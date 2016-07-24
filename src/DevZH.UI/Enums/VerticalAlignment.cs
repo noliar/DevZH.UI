@@ -5,10 +5,11 @@ using System.Threading.Tasks;
 
 namespace DevZH.UI
 {
-    public class Class1
+    public enum VerticalAlignment
     {
-        public Class1()
-        {
-        }
+        Stretch,
+        Top,
+        Center,
+        Bottom
     }
 }
