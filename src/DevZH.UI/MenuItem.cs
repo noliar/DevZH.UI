@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DevZH.UI.Events;
 using DevZH.UI.Interface;
 using DevZH.UI.Interop;
 
@@ -9,13 +10,14 @@ namespace DevZH.UI
 {
     public class MenuItem : Control
     {
-        internal MenuItem(ControlHandle handle)
+        internal MenuItem(ControlHandle handle, MenuItemTypes type)
         {
             ControlHandle = handle;
+            Type = type;
             InitializeEvents();
         }
 
-        public MenuItemTypes Type { get; internal set; }
+        public MenuItemTypes Type { get; }
 
         private bool _enabled = true;
         public override bool Enabled
@@ -59,10 +61,17 @@ namespace DevZH.UI
 
         public void InitializeEvents()
         {
-            NativeMethods.MenuItemOnClicked(ControlHandle, (item, window, data) =>
+            switch (Type)
             {
-                OnClick(EventArgs.Empty);
-            }, IntPtr.Zero);
+                case MenuItemTypes.Quit:
+                    break;
+                default:
+                    NativeMethods.MenuItemOnClicked(ControlHandle, (item, window, data) =>
+                    {
+                        OnClick(new DataEventArgs(window));
+                    }, IntPtr.Zero);
+                    break;
+            }
         }
     }
 }

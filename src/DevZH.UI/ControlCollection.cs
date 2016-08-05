@@ -58,8 +58,6 @@ namespace DevZH.UI
 
         protected List<Control> InnerList { get; }
 
-        protected int index { get; private set; }
-
         public ControlCollection(TOwner owner)
         {
             Owner = owner;
@@ -165,13 +163,12 @@ namespace DevZH.UI
 
         public virtual void RemoveAt(int index)
         {
-            this.index = index;
             Remove(InnerList[index]);
         }
 
-        public Control this[int index]
+        public Control this[int i]
         {
-            get { return InnerList[index]; }
+            get { return InnerList[i]; }
             set { throw new NotImplementedException(); }
         }
     }

@@ -12,6 +12,11 @@ namespace DevZH.UI.Interop
         {
         }
 
+        public ControlHandle(IntPtr intPtr) : base(intPtr, true)
+        {
+            
+        }
+
         protected override bool ReleaseHandle()
         {
             // TODO it always return true on *nix.

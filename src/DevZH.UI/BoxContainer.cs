@@ -75,7 +75,7 @@ namespace DevZH.UI
 
         public override bool Remove(Control item)
         {
-            NativeMethods.BoxDelete(item.ControlHandle, index);
+            NativeMethods.BoxDelete(Owner.ControlHandle, item.Index);
             return base.Remove(item);
         }
 

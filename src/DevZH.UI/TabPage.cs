@@ -56,6 +56,12 @@ namespace DevZH.UI
             Name = name;
         }
 
+        public TabPage(string name, Control child)
+        {
+            Name = name;
+            Child = child;
+        }
+
         protected internal override void DelayRender()
         {
             if (_beforeAdd && _allowMargins)

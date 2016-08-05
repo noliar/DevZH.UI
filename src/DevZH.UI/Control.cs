@@ -37,7 +37,14 @@ namespace DevZH.UI
 
         protected Control()
         {
-            
+            if (this is Window)
+            {
+                _visible = false;
+            }
+            else
+            {
+                _visible = true;
+            }
         }
 
         protected internal bool Verify()
@@ -119,11 +126,11 @@ namespace DevZH.UI
         {
             if (!ControlHandle.IsInvalid)
             {
-                DestroyHandle();
+                Destroy();
             }
         }
 
-        protected virtual void DestroyHandle()
+        protected virtual void Destroy()
         {
             // TODO maybe store some info
             NativeMethods.ControlDestroy(ControlHandle);
@@ -132,6 +139,11 @@ namespace DevZH.UI
         public virtual void Show()
         {
             this.Visible = true;
+        }
+
+        public virtual void Hide()
+        {
+            this.Visible = false;
         }
 
         protected virtual void OnResize(EventArgs e)

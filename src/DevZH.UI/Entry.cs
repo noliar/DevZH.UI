@@ -11,6 +11,7 @@ namespace DevZH.UI
         public Entry()
         {
             ControlHandle = NativeMethods.NewEntry();
+            InitializeEvents();
         }
     }
 
@@ -19,6 +20,7 @@ namespace DevZH.UI
         public PasswordEntry()
         {
             ControlHandle = NativeMethods.NewPasswordEntry();
+            InitializeEvents();
         }
     }
 
@@ -27,6 +29,7 @@ namespace DevZH.UI
         public SearchEntry()
         {
             ControlHandle = NativeMethods.NewSearchEntry();
+            InitializeEvents();
         }
     }
 }

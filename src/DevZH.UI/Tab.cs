@@ -28,21 +28,21 @@ namespace DevZH.UI
                 child.DelayRender();
             }
 
-            public override void Insert(int index, Control child)
+            public override void Insert(int i, Control child)
             {
                 var page = child as TabPage;
                 if (page == null)
                 {
                     throw new ArgumentException("cannot only attach TabPage to Tab");
                 }
-                base.Insert(index, child);
-                NativeMethods.TabInsertAt(Owner.ControlHandle, StringUtil.GetBytes(page.Name), index, child.ControlHandle);
+                base.Insert(i, child);
+                NativeMethods.TabInsertAt(Owner.ControlHandle, StringUtil.GetBytes(page.Name), i, child.ControlHandle);
                 child.DelayRender();
             }
 
             public override bool Remove(Control item)
             {
-                NativeMethods.TabDelete(Owner.ControlHandle, index);
+                NativeMethods.TabDelete(Owner.ControlHandle, item.Index);
                 return base.Remove(item);
             }
         }

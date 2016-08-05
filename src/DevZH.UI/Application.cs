@@ -36,7 +36,7 @@ namespace DevZH.UI
             }
         }
 
-        public Application()
+        public Application(bool hiddenConsole = true)
         {
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
             var locks = _lock;
@@ -48,7 +48,7 @@ namespace DevZH.UI
                 }
                 _instance = this;
                 _appCreated = true;
-                Init();
+                Init(hiddenConsole);
             }
         }
 
@@ -80,9 +80,9 @@ namespace DevZH.UI
             }
         }
 
-        private void Init()
+        private void Init(bool hiddenConsole = true)
         {
-            HideConsole = true;
+            HideConsole = hiddenConsole;
             var str = NativeMethods.Init(ref Options);
             if (!string.IsNullOrEmpty(str))
             {
@@ -109,7 +109,7 @@ namespace DevZH.UI
                 QueueMain(action);
                 NativeMethods.Main();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return -1;
             }

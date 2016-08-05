@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
+using DevZH.UI.Drawing;
 using DevZH.UI.Interface;
 using DevZH.UI.Interop;
 using DevZH.UI.Utils;
@@ -14,6 +14,8 @@ namespace DevZH.UI
     public class Window : Control
     {
         private string _title = "DevZH.UI";
+
+        private static readonly Dictionary<IntPtr, Window> Windows = new Dictionary<IntPtr, Window>();
 
         public EventHandler<CancelEventArgs> Closing;
 
@@ -58,7 +60,7 @@ namespace DevZH.UI
             set
             {
                 _location = value;
-                NativeMethods.WindowSetPosition(ControlHandle, value.X, value.Y);
+                NativeMethods.WindowSetPosition(ControlHandle, (int) value.X, (int) value.Y);
                 StartPosition = WindowStartPosition.Manual;
             }
         }
@@ -77,7 +79,7 @@ namespace DevZH.UI
             set
             {
                 _size = value;
-                NativeMethods.WindowSetContentSize(ControlHandle, value.Width, value.Height);
+                NativeMethods.WindowSetContentSize(ControlHandle, (int) value.Width, (int) value.Height);
             }
         }
 
@@ -104,7 +106,7 @@ namespace DevZH.UI
             if (!ValidTitle(title)) title = _title;
             this.ControlHandle = NativeMethods.NewWindow(StringUtil.GetBytes(title), width, height, hasMemubar);
             _title = title;
-            ControlCaches.Add(this.ControlHandle, this);
+            Windows.Add(this.ControlHandle.DangerousGetHandle(), this);
             this.InitializeEvents();
             this.InitializeData();
         }
@@ -122,9 +124,17 @@ namespace DevZH.UI
                 // args.Cancel: True is not closing. False is to be closed and destroyed.
                 // It maybe a little different to other wrapper.
                 var cancel = args.Cancel;
-                if (!cancel && this.TopLevel)
+                if (!cancel)
                 {
-                    Application.Current.Exit();
+                    if (Windows.Count > 1)
+                    {
+                        var intptr = this.ControlHandle.DangerousGetHandle();
+                        Windows.Remove(intptr);
+                    }
+                    else
+                    {
+                        Application.Current.Exit();
+                    }
                 }
                 return !cancel;
             }, IntPtr.Zero);
@@ -162,6 +172,13 @@ namespace DevZH.UI
                     break;
             }
             base.Show();
+        }
+
+        public void Close()
+        {
+            var intptr = this.ControlHandle.DangerousGetHandle();
+            base.Destroy();
+            Windows.Remove(intptr);
         }
 
         public void CenterToScreen()

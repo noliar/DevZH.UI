@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DevZH.UI.Events;
 using DevZH.UI.Interop;
 using DevZH.UI.Utils;
 
@@ -16,7 +17,7 @@ namespace DevZH.UI
             Items = new List<MenuItem>();
         }
 
-        public MenuItem Add(string name, MenuItemTypes type, Action click = null)
+        public MenuItem Add(string name, MenuItemTypes type = MenuItemTypes.Common, Action<IntPtr> click = null)
         {
             ControlHandle handler = null;
             var nb = StringUtil.GetBytes(name);
@@ -38,12 +39,49 @@ namespace DevZH.UI
                     handler = NativeMethods.MenuAppendAboutItem(ControlHandle);
                     break;
             }
-            var item = new MenuItem(handler) {Type = type};
+            var item = new MenuItem(handler, type);
             if (click != null)
             {
                 item.Click += (sender, e) =>
                 {
-                    click();
+                    var args = e as DataEventArgs;
+                    if (args != null)
+                    {
+                        click(args.Data);
+                    }
+                };
+            }
+            Items.Add(item);
+            return item;
+        }
+
+        public MenuItem Add(MenuItemTypes type = MenuItemTypes.Quit, Action<IntPtr> click = null)
+        {
+            ControlHandle handler = null;
+            switch (type)
+            {
+                case MenuItemTypes.Quit:
+                    handler = NativeMethods.MenuAppendQuitItem(ControlHandle);
+                    break;
+                case MenuItemTypes.Preferences:
+                    handler = NativeMethods.MenuAppendPreferencesItem(ControlHandle);
+                    break;
+                case MenuItemTypes.About:
+                    handler = NativeMethods.MenuAppendAboutItem(ControlHandle);
+                    break;
+                default:
+                    throw new InvalidOperationException("Cannot add Common or Check Menu without name");
+            }
+            var item = new MenuItem(handler, type);
+            if (click != null)
+            {
+                item.Click += (sender, e) =>
+                {
+                    var args = e as DataEventArgs;
+                    if (args != null)
+                    {
+                        click(args.Data);
+                    }
                 };
             }
             Items.Add(item);

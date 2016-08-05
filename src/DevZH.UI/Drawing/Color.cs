@@ -47,5 +47,42 @@ namespace DevZH.UI.Drawing
                 return hashCode;
             }
         }
+
+        public static Color FromUint(uint argb)
+        {
+            var color = new Color();
+            var a = (byte)((argb & 0xff000000) >> 24);
+            var r = (byte)((argb & 0x00ff0000) >> 16);
+            var g = (byte)((argb & 0x0000ff00) >> 8);
+            var b = (byte)(argb & 0x000000ff);
+            color.A = sRgbToScRgb(a);
+            color.R = sRgbToScRgb(r);
+            color.G = sRgbToScRgb(g);
+            color.B = sRgbToScRgb(b);
+            return color;
+        }
+
+        private static float sRgbToScRgb(byte bval)
+        {
+            float num = (float)bval / 255f;
+            if ((double)num <= 0.0)
+            {
+                return 0f;
+            }
+            if ((double)num <= 0.04045)
+            {
+                return num / 12.92f;
+            }
+            if (num < 1f)
+            {
+                return (float)Math.Pow(((double)num + 0.055) / 1.055, 2.4);
+            }
+            return 1f;
+        }
+
+        public static explicit operator Brush(Color color)
+        {
+            return new Brush(color);
+        }
     }
 }

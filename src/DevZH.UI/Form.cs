@@ -69,7 +69,7 @@ namespace DevZH.UI
 
         public override bool Remove(Control item)
         {
-            NativeMethods.FormDelete(Owner.ControlHandle, index);
+            NativeMethods.FormDelete(Owner.ControlHandle, item.Index);
             return base.Remove(item);
         }
     }

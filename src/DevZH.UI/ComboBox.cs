@@ -32,7 +32,7 @@ namespace DevZH.UI
             }
         }
 
-        private int _index;
+        private int _index = -1;
         public int SelectedIndex
         {
             get
