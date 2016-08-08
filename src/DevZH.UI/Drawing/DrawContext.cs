@@ -17,13 +17,15 @@ namespace DevZH.UI.Drawing
 
         public void Fill(Path path, Brush brush)
         {
-            NativeMethods.DrawFill(ControlHandle, path.ControlHandle, ref brush);
-            //NativeMethods.DrawFill(this, path.ControlHandle, ref brush);
+            var tmp = brush.Internal;
+            NativeMethods.DrawFill(ControlHandle, path.ControlHandle, ref tmp);
         }
 
         public void Stroke(Path path, Brush brush, StrokeParams param)
         {
-            NativeMethods.DrawStroke(ControlHandle, path.ControlHandle, ref brush, ref param);
+            var b = brush.Internal;
+            var p = param.Internal;
+            NativeMethods.DrawStroke(ControlHandle, path.ControlHandle, ref b, ref p);
         }
 
         public void Clip(Path path)

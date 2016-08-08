@@ -80,9 +80,9 @@ namespace DevZH.UI.Drawing
             return 1f;
         }
 
-        public static explicit operator Brush(Color color)
+        public static explicit operator SolidColorBrush(Color color)
         {
-            return new Brush(color);
+            return new SolidColorBrush(color);
         }
     }
 }

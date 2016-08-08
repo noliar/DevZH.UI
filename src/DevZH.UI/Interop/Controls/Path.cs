@@ -45,9 +45,9 @@ namespace DevZH.UI.Interop
         public static extern void DrawPathEnd(ControlHandle path);
 
         [DllImport(LibUI, CallingConvention = CallingConvention.Cdecl, EntryPoint = "uiDrawStroke")]
-        public static extern void DrawStroke(ControlHandle context, ControlHandle path, ref Brush brush, ref StrokeParams strokeParam);
+        public static extern void DrawStroke(ControlHandle context, ControlHandle path, ref BrushInternal brush, ref StrokeParamsInternal strokeParam);
 
         [DllImport(LibUI, CallingConvention = CallingConvention.Cdecl, EntryPoint = "uiDrawFill")]
-        public static extern void DrawFill(ControlHandle context, ControlHandle path, ref Brush brush);
+        public static extern void DrawFill(ControlHandle context, ControlHandle path, ref BrushInternal brush);
     }
 }

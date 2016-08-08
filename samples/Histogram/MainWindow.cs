@@ -41,7 +41,7 @@ namespace Histogram
             }
 
             _colorPicker = new ColorPicker();
-            _colorPicker.Color = Brushes.Blue.Color;
+            _colorPicker.Color = (Color)Brushes.Blue;
             _colorPicker.ColorChanged += (sender, args) =>
             {
                 _histogram.QueueReDrawAll();

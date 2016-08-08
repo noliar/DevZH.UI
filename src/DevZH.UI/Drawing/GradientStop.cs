@@ -9,10 +9,10 @@ namespace DevZH.UI.Drawing
     [StructLayout(LayoutKind.Sequential)]
     public struct GradientStop
     {
-        double Pos;
-        double R;
-        double G;
-        double B;
-        double A;
+        public double Pos;
+        public double R;
+        public double G;
+        public double B;
+        public double A;
     }
 }

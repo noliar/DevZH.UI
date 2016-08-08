@@ -1,13 +1,24 @@
 ﻿{
   "version": "1.0.0-*",
 
+  "description": ".NET Core bindings for libui",
+  "authors": [ "杜晓宇" ],
+
   "buildOptions": {
-    "compile": {
-      "exclude": [
-        "Drawing/Area/**.cs",
-        "Interop/Controls/Area/**.cs"
-      ]
-    }
+    "allowUnsafe": true
+  },
+
+  "packOptions": {
+    "repository": {
+      "type": "git",
+      "url": "git://github.com/noliar/DevZH.UI"
+    },
+    "licenseUrl": "https://raw.githubusercontent.com/noliar/DevZH.UI/master/LICENSE-2.0.txt",
+    "projectUrl": "https://github.com/noliar/DevZH.UI",
+    "tags": [
+      "libui",
+      "netcore"
+    ]
   },
 
   "dependencies": {
@@ -17,10 +28,10 @@
 
     "System.ComponentModel": "4.0.1",
     "System.Drawing.Primitives": "4.0.0",
-    "System.Text.Encoding.CodePages": "4.0.1" 
+    "System.Text.Encoding.CodePages": "4.0.1"
   },
 
   "frameworks": {
-    "netstandard1.3": { }
+    "netstandard1.3": {}
   }
 }

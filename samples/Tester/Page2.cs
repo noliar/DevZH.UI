@@ -203,6 +203,7 @@ namespace Tester
             {
                 _button2.Show();
             };
+            // It doesn't hide on unix. libui bug?
             _button2.Hide();
             _hBox.Children.Add(_button, true);
             _hBox.Children.Add(_button2);

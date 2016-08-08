@@ -17,7 +17,7 @@ namespace Histogram
         private const int yoffBottom = 20;
 
         private Path _path;
-        private Brush _brush;
+        private SolidColorBrush _brush;
         private StrokeParams _strokeParams;
         private ColorPicker _colorPicker;
         private List<SpinBox> _spinBoxs;
@@ -64,7 +64,7 @@ namespace Histogram
             matrix.Translate(xoffLeft, yoffTop);
             param.Context.Transform(matrix);
 
-            _brush = (Brush) _colorPicker.Color;
+            _brush = (SolidColorBrush) _colorPicker.Color;
             var a = _brush.A;
             _brush.A = _brush.A/2;
             _path = ConstructGraph(graphWidth, graphHeight, true);
