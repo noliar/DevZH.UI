@@ -16,14 +16,14 @@ namespace DevZH.UI
         {
             get
             {
-                _selectedIndex = NativeMethods.RadioButtonSelected(ControlHandle);
+                _selectedIndex = NativeMethods.RadioButtonSelected(handle);
                 return _selectedIndex;
             }
             set
             {
                 if (_selectedIndex != value)
                 {
-                    NativeMethods.RadioButtonSetSelected(ControlHandle, value);
+                    NativeMethods.RadioButtonSetSelected(handle, value);
                     _selectedIndex = value;
                 }
             }
@@ -31,7 +31,7 @@ namespace DevZH.UI
 
         public RadioButtonList()
         {
-            ControlHandle = NativeMethods.NewRadioButton();
+            handle = NativeMethods.NewRadioButton();
             InitializeEvents();
         }
 
@@ -39,13 +39,13 @@ namespace DevZH.UI
         {
             if (rbText == null)
             {
-                NativeMethods.RadioButtonAppend(ControlHandle, StringUtil.GetBytes(null));
+                NativeMethods.RadioButtonAppend(handle, StringUtil.GetBytes(null));
             }
             else
             {
                 foreach (var text in rbText)
                 {
-                    NativeMethods.RadioButtonAppend(ControlHandle, StringUtil.GetBytes(text));
+                    NativeMethods.RadioButtonAppend(handle, StringUtil.GetBytes(text));
                 }
             }
         }
@@ -57,7 +57,7 @@ namespace DevZH.UI
 
         protected void InitializeEvents()
         {
-            NativeMethods.RadioButtonOnSelected(ControlHandle, (btn, data) =>
+            NativeMethods.RadioButtonOnSelected(handle, (btn, data) =>
             {
                 OnSelected(EventArgs.Empty);
             }, IntPtr.Zero);

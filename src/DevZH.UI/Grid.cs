@@ -11,7 +11,7 @@ namespace DevZH.UI
     {
         public Grid()
         {
-            ControlHandle = NativeMethods.NewGrid();
+            handle = NativeMethods.NewGrid();
         }
 
         private bool _allowPadding;
@@ -19,14 +19,14 @@ namespace DevZH.UI
         {
             get
             {
-                _allowPadding = NativeMethods.GridPadded(ControlHandle);
+                _allowPadding = NativeMethods.GridPadded(handle);
                 return _allowPadding;
             }
             set
             {
                 if (_allowPadding != value)
                 {
-                    NativeMethods.GridSetPadded(ControlHandle, value);
+                    NativeMethods.GridSetPadded(handle, value);
                     _allowPadding = value;
                 }
             }
@@ -66,7 +66,7 @@ namespace DevZH.UI
                 throw new InvalidOperationException("cannot add the same control.");
             }
             if (item == null) return;
-            NativeMethods.GridAppend(Owner.ControlHandle, item.ControlHandle, left, top, xspan, yspan, hexpand, halign, vexpand, valign);
+            NativeMethods.GridAppend(Owner.handle, item.handle, left, top, xspan, yspan, hexpand, halign, vexpand, valign);
             base.Add(item);
         }
 
@@ -77,7 +77,7 @@ namespace DevZH.UI
 
         public virtual void Insert(Control item, Control existui,GridEdge at, int xspan, int yspan, int hexpand, HorizontalAlignment halign, int vexpand, VerticalAlignment valign)
         {
-            NativeMethods.GridInsertAt(Owner.ControlHandle, item.ControlHandle, existui.ControlHandle, at, xspan, yspan, hexpand, halign, vexpand, valign);
+            NativeMethods.GridInsertAt(Owner.handle, item.handle, existui.handle, at, xspan, yspan, hexpand, halign, vexpand, valign);
             base.Insert(existui.Index, item);
         }
     }

@@ -14,7 +14,7 @@ namespace DevZH.UI
 
         public ColorPicker()
         {
-            ControlHandle = NativeMethods.NewColorButton();
+            handle = NativeMethods.NewColorButton();
             _color = new Color();
             InitializeEvents();
         }
@@ -24,14 +24,14 @@ namespace DevZH.UI
         {
             get
             {
-                NativeMethods.ColorButtonColor(ControlHandle,out _color.R, out _color.G, out _color.B, out _color.A);
+                NativeMethods.ColorButtonColor(handle, out _color.R, out _color.G, out _color.B, out _color.A);
                 return _color;
             }
             set
             {
                 if (_color != value)
                 {
-                    NativeMethods.ColorButtonSetColor(ControlHandle, value.R, value.G, value.B, value.A);
+                    NativeMethods.ColorButtonSetColor(handle, value.R, value.G, value.B, value.A);
                     _color = value;
                 }
             }
@@ -39,7 +39,7 @@ namespace DevZH.UI
 
         public void InitializeEvents()
         {
-            NativeMethods.ColorButtonOnChanged(ControlHandle, (button, data) =>
+            NativeMethods.ColorButtonOnChanged(handle, (button, data) =>
             {
                 OnColorChanged(EventArgs.Empty);
             },IntPtr.Zero);

@@ -63,7 +63,7 @@ namespace DevZH.UI.Drawing
             {
                 if (_size != value)
                 {
-                    NativeMethods.AreaSetSize(ControlHandle, (int)value.Width, (int)value.Height);
+                    NativeMethods.AreaSetSize(handle, (int)value.Width, (int)value.Height);
                     _size = value;
                 }
             }
@@ -72,12 +72,12 @@ namespace DevZH.UI.Drawing
 
         public void QueueReDrawAll()
         {
-            NativeMethods.AreaQueueReDrawAll(ControlHandle);
+            NativeMethods.AreaQueueReDrawAll(handle);
         }
 
         public void ScrollTo(double x, double y, double width, double height)
         {
-            NativeMethods.AreaScrollTo(ControlHandle, x, y, width, height);
+            NativeMethods.AreaScrollTo(handle, x, y, width, height);
         }
     }
 
@@ -85,8 +85,7 @@ namespace DevZH.UI.Drawing
     {
         public Area(IAreaHandler handler) : base(handler)
         {
-            ControlHandle = NativeMethods.NewArea( AreaHandlerInternal);
-            var handle = ControlHandle.DangerousGetHandle();
+            handle = NativeMethods.NewArea( AreaHandlerInternal);
             Areas[handle] = this;
         }
     }
@@ -95,8 +94,7 @@ namespace DevZH.UI.Drawing
     {
         public ScrollingArea(IAreaHandler handler, int width, int height) : base(handler)
         {
-            ControlHandle = NativeMethods.NewScrollingArea( AreaHandlerInternal, width, height);
-            var handle = ControlHandle.DangerousGetHandle();
+            handle = NativeMethods.NewScrollingArea( AreaHandlerInternal, width, height);
             Areas[handle] = this;
         }
     }

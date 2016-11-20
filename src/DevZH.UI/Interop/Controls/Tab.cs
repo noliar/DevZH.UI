@@ -9,24 +9,24 @@ namespace DevZH.UI.Interop
     internal partial class NativeMethods
     {
         [DllImport(LibUI, CallingConvention = CallingConvention.Cdecl, EntryPoint = "uiTabAppend")]
-        public static extern void TabAppend(ControlHandle tab, byte[] name, ControlHandle child);
+        public static extern void TabAppend(IntPtr tab, byte[] name, IntPtr child);
 
         [DllImport(LibUI, CallingConvention = CallingConvention.Cdecl, EntryPoint = "uiTabInsertAt")]
-        public static extern void TabInsertAt(ControlHandle tab, byte[] name, int before, ControlHandle child);
+        public static extern void TabInsertAt(IntPtr tab, byte[] name, int before, IntPtr child);
 
         [DllImport(LibUI, CallingConvention = CallingConvention.Cdecl, EntryPoint = "uiTabDelete")]
-        public static extern void TabDelete(ControlHandle tab, int index);
+        public static extern void TabDelete(IntPtr tab, int index);
 
         [DllImport(LibUI, CallingConvention = CallingConvention.Cdecl, EntryPoint = "uiTabNumPages")]
-        public static extern int TabNumPages(ControlHandle tab);
+        public static extern int TabNumPages(IntPtr tab);
 
         [DllImport(LibUI, CallingConvention = CallingConvention.Cdecl, EntryPoint = "uiTabMargined")]
-        public static extern bool TabMargined(ControlHandle tab, int page);
+        public static extern bool TabMargined(IntPtr tab, int page);
 
         [DllImport(LibUI, CallingConvention = CallingConvention.Cdecl, EntryPoint = "uiTabSetMargined")]
-        public static extern void TabSetMargined(ControlHandle tab, int page, bool margined);
+        public static extern void TabSetMargined(IntPtr tab, int page, bool margined);
 
         [DllImport(LibUI, CallingConvention = CallingConvention.Cdecl, EntryPoint = "uiNewTab")]
-        public static extern ControlHandle NewTab();
+        public static extern IntPtr NewTab();
     }
 }

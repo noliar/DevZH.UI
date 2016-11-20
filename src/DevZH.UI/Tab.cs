@@ -24,7 +24,7 @@ namespace DevZH.UI
                     throw new ArgumentException("cannot only attach TabPage to Tab");
                 }
                 base.Add(child);
-                NativeMethods.TabAppend(Owner.ControlHandle, StringUtil.GetBytes(page.Name), child.ControlHandle);
+                NativeMethods.TabAppend(Owner.handle, StringUtil.GetBytes(page.Name), child.handle);
                 child.DelayRender();
             }
 
@@ -36,13 +36,13 @@ namespace DevZH.UI
                     throw new ArgumentException("cannot only attach TabPage to Tab");
                 }
                 base.Insert(i, child);
-                NativeMethods.TabInsertAt(Owner.ControlHandle, StringUtil.GetBytes(page.Name), i, child.ControlHandle);
+                NativeMethods.TabInsertAt(Owner.handle, StringUtil.GetBytes(page.Name), i, child.handle);
                 child.DelayRender();
             }
 
             public override bool Remove(Control item)
             {
-                NativeMethods.TabDelete(Owner.ControlHandle, item.Index);
+                NativeMethods.TabDelete(Owner.handle, item.Index);
                 return base.Remove(item);
             }
         }
@@ -62,7 +62,7 @@ namespace DevZH.UI
 
         public Tab()
         {
-            ControlHandle = NativeMethods.NewTab();
+            handle = NativeMethods.NewTab();
         }
     }
 }

@@ -20,7 +20,7 @@ namespace DevZH.UI
                 if (_child != value)
                 {
                     _child = value;
-                    ControlHandle = _child.ControlHandle;
+                    handle = _child.handle;
                 }
             }
         }
@@ -33,7 +33,7 @@ namespace DevZH.UI
             {
                 if (Parent != null && !Parent.Verify())
                 {
-                    _allowMargins = NativeMethods.TabMargined(Parent.ControlHandle, Index);
+                    _allowMargins = NativeMethods.TabMargined(Parent.handle, Index);
                     _beforeAdd = false;
                 }
                 return _allowMargins;
@@ -44,7 +44,7 @@ namespace DevZH.UI
                 {
                     if (Parent != null && !Parent.Verify())
                     {
-                        NativeMethods.TabSetMargined(Parent.ControlHandle, Index, value);
+                        NativeMethods.TabSetMargined(Parent.handle, Index, value);
                     }
                     _allowMargins = value;
                 }
@@ -66,7 +66,7 @@ namespace DevZH.UI
         {
             if (_beforeAdd && _allowMargins)
             {
-                NativeMethods.TabSetMargined(Parent.ControlHandle, Index, _allowMargins);
+                NativeMethods.TabSetMargined(Parent.handle, Index, _allowMargins);
             }
         }
     }

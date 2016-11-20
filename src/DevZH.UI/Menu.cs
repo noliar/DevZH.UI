@@ -13,30 +13,30 @@ namespace DevZH.UI
         public List<MenuItem> Items { get; }
         public Menu(string name)
         {
-            ControlHandle = NativeMethods.NewMenu(StringUtil.GetBytes(name));
+            handle = NativeMethods.NewMenu(StringUtil.GetBytes(name));
             Items = new List<MenuItem>();
         }
 
         public MenuItem Add(string name, MenuItemTypes type = MenuItemTypes.Common, Action<IntPtr> click = null)
         {
-            ControlHandle handler = null;
+            var handler = IntPtr.Zero;
             var nb = StringUtil.GetBytes(name);
             switch (type)
             {
                 case MenuItemTypes.Common:
-                    handler = NativeMethods.MenuAppendItem(ControlHandle, nb);
+                    handler = NativeMethods.MenuAppendItem(handle, nb);
                     break;
                 case MenuItemTypes.Check:
-                    handler = NativeMethods.MenuAppendCheckItem(ControlHandle, nb);
+                    handler = NativeMethods.MenuAppendCheckItem(handle, nb);
                     break;
                 case MenuItemTypes.Quit:
-                    handler = NativeMethods.MenuAppendQuitItem(ControlHandle);
+                    handler = NativeMethods.MenuAppendQuitItem(handle);
                     break;
                 case MenuItemTypes.Preferences:
-                    handler = NativeMethods.MenuAppendPreferencesItem(ControlHandle);
+                    handler = NativeMethods.MenuAppendPreferencesItem(handle);
                     break;
                 case MenuItemTypes.About:
-                    handler = NativeMethods.MenuAppendAboutItem(ControlHandle);
+                    handler = NativeMethods.MenuAppendAboutItem(handle);
                     break;
             }
             var item = new MenuItem(handler, type);
@@ -57,17 +57,17 @@ namespace DevZH.UI
 
         public MenuItem Add(MenuItemTypes type = MenuItemTypes.Quit, Action<IntPtr> click = null)
         {
-            ControlHandle handler = null;
+            var handler = IntPtr.Zero;
             switch (type)
             {
                 case MenuItemTypes.Quit:
-                    handler = NativeMethods.MenuAppendQuitItem(ControlHandle);
+                    handler = NativeMethods.MenuAppendQuitItem(handle);
                     break;
                 case MenuItemTypes.Preferences:
-                    handler = NativeMethods.MenuAppendPreferencesItem(ControlHandle);
+                    handler = NativeMethods.MenuAppendPreferencesItem(handle);
                     break;
                 case MenuItemTypes.About:
-                    handler = NativeMethods.MenuAppendAboutItem(ControlHandle);
+                    handler = NativeMethods.MenuAppendAboutItem(handle);
                     break;
                 default:
                     throw new InvalidOperationException("Cannot add Common or Check Menu without name");
@@ -90,7 +90,7 @@ namespace DevZH.UI
 
         public void AddSeparator()
         {
-            NativeMethods.MenuAppendSeparator(ControlHandle);
+            NativeMethods.MenuAppendSeparator(handle);
         }
     }
 }

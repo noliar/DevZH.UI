@@ -41,16 +41,16 @@ namespace DevZH.UI.Interop
 
 
         [DllImport(LibUI, CallingConvention = CallingConvention.Cdecl, EntryPoint = "uiDrawTransform")]
-        public static extern void DrawTransform(ControlHandle context, Matrix matrix);
+        public static extern void DrawTransform(IntPtr context, Matrix matrix);
 
         // TODO add a uiDrawPathStrokeToFill() or something like that
         [DllImport(LibUI, CallingConvention = CallingConvention.Cdecl, EntryPoint = "uiDrawClip")]
-        public static extern void DrawClip(ControlHandle context, ControlHandle path);
+        public static extern void DrawClip(IntPtr context, IntPtr path);
 
         [DllImport(LibUI, CallingConvention = CallingConvention.Cdecl, EntryPoint = "uiDrawSave")]
-        public static extern void DrawSave(ControlHandle context);
+        public static extern void DrawSave(IntPtr context);
 
         [DllImport(LibUI, CallingConvention = CallingConvention.Cdecl, EntryPoint = "uiDrawRestore")]
-        public static extern void DrawRestore(ControlHandle context);
+        public static extern void DrawRestore(IntPtr context);
     }
 }

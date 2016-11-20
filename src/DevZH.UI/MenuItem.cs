@@ -10,9 +10,9 @@ namespace DevZH.UI
 {
     public class MenuItem : Control
     {
-        internal MenuItem(ControlHandle handle, MenuItemTypes type)
+        internal MenuItem(IntPtr handle, MenuItemTypes type)
         {
-            ControlHandle = handle;
+            this.handle = handle;
             Type = type;
             InitializeEvents();
         }
@@ -28,11 +28,11 @@ namespace DevZH.UI
                 if (_enabled == value) return;
                 if (value)
                 {
-                    NativeMethods.MenuItemEnable(ControlHandle);
+                    NativeMethods.MenuItemEnable(handle);
                 }
                 else
                 {
-                    NativeMethods.MenuItemDisable(ControlHandle);
+                    NativeMethods.MenuItemDisable(handle);
                 }
                 _enabled = value;
             }
@@ -45,7 +45,7 @@ namespace DevZH.UI
             {
                 if (this.Type == MenuItemTypes.Check)
                 {
-                    _isChecked = NativeMethods.MenuItemChecked(ControlHandle);
+                    _isChecked = NativeMethods.MenuItemChecked(handle);
                 }
                 return _isChecked;
             }
@@ -53,7 +53,7 @@ namespace DevZH.UI
             {
                 if (_isChecked != value && this.Type == MenuItemTypes.Check)
                 {
-                    NativeMethods.MenuItemSetChecked(ControlHandle, value);
+                    NativeMethods.MenuItemSetChecked(handle, value);
                     _isChecked = value;
                 }
             }
@@ -66,7 +66,7 @@ namespace DevZH.UI
                 case MenuItemTypes.Quit:
                     break;
                 default:
-                    NativeMethods.MenuItemOnClicked(ControlHandle, (item, window, data) =>
+                    NativeMethods.MenuItemOnClicked(handle, (item, window, data) =>
                     {
                         OnClick(new DataEventArgs(window));
                     }, IntPtr.Zero);

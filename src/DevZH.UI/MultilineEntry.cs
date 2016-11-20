@@ -16,14 +16,14 @@ namespace DevZH.UI
         {
             get
             {
-                _text = StringUtil.GetString(NativeMethods.MultilineEntryText(ControlHandle));
+                _text = StringUtil.GetString(NativeMethods.MultilineEntryText(handle));
                 return _text;
             }
             set
             {
                 if (_text != value)
                 {
-                    NativeMethods.MultilineEntrySetText(ControlHandle, StringUtil.GetBytes(value));
+                    NativeMethods.MultilineEntrySetText(handle, StringUtil.GetBytes(value));
                     _text = value;
                 }
             }
@@ -34,14 +34,14 @@ namespace DevZH.UI
         {
             get
             {
-                _isReadOnly = NativeMethods.MultilineEntryReadOnly(ControlHandle);
+                _isReadOnly = NativeMethods.MultilineEntryReadOnly(handle);
                 return _isReadOnly;
             }
             set
             {
                 if (_isReadOnly != value)
                 {
-                    NativeMethods.MultilineEntrySetReadOnly(ControlHandle, value);
+                    NativeMethods.MultilineEntrySetReadOnly(handle, value);
                     _isReadOnly = value;
                 }
             }
@@ -52,11 +52,11 @@ namespace DevZH.UI
             IsWrapping = isWrapping;
             if (isWrapping)
             {
-                ControlHandle = NativeMethods.NewMultilineEntry();
+                handle = NativeMethods.NewMultilineEntry();
             }
             else
             {
-                ControlHandle = NativeMethods.NewNonWrappingMultilineEntry();
+                handle = NativeMethods.NewNonWrappingMultilineEntry();
             }
         }
 
@@ -64,7 +64,7 @@ namespace DevZH.UI
         {
             if (!string.IsNullOrEmpty(append))
             {
-                NativeMethods.MultilineEntryAppend(ControlHandle, StringUtil.GetBytes(append));
+                NativeMethods.MultilineEntryAppend(handle, StringUtil.GetBytes(append));
             }
         }
     }

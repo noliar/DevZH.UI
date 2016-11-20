@@ -8,6 +8,6 @@ namespace DevZH.UI.Drawing
 {
     public class Shape
     {
-        public ControlHandle ControlHandle { get; protected set; }
+        public IntPtr ControlHandle { get; protected set; }
     }
 }

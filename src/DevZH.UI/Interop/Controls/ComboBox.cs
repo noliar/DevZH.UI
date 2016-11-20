@@ -9,18 +9,18 @@ namespace DevZH.UI.Interop
     internal partial class NativeMethods
     {
         [DllImport(LibUI, CallingConvention = CallingConvention.Cdecl, EntryPoint = "uiComboboxAppend")]
-        public static extern void ComboBoxAppend(ControlHandle comboBox, byte[] text);
+        public static extern void ComboBoxAppend(IntPtr comboBox, byte[] text);
 
         [DllImport(LibUI, CallingConvention = CallingConvention.Cdecl, EntryPoint = "uiComboboxSelected")]
-        public static extern int ComboBoxSelected(ControlHandle comboBox);
+        public static extern int ComboBoxSelected(IntPtr comboBox);
 
         [DllImport(LibUI, CallingConvention = CallingConvention.Cdecl, EntryPoint = "uiComboboxSetSelected")]
-        public static extern void ComboBoxSetSelected(ControlHandle comboBox, int n);
+        public static extern void ComboBoxSetSelected(IntPtr comboBox, int n);
 
         [DllImport(LibUI, CallingConvention = CallingConvention.Cdecl, EntryPoint = "uiComboboxOnSelected")]
-        public static extern void ComboBoxOnSelected(ControlHandle comboBox, ComboBoxOnSelectedDelegate comboBoxOnSelected, IntPtr data);
+        public static extern void ComboBoxOnSelected(IntPtr comboBox, ComboBoxOnSelectedDelegate comboBoxOnSelected, IntPtr data);
 
         [DllImport(LibUI, CallingConvention = CallingConvention.Cdecl, EntryPoint = "uiNewCombobox")]
-        public static extern ControlHandle NewComboBox();
+        public static extern IntPtr NewComboBox();
     }
 }

@@ -14,8 +14,8 @@ namespace DevZH.UI
     {
         public override string Text
         {
-            get { return StringUtil.GetString(NativeMethods.ButtonText(ControlHandle)); }
-            set { NativeMethods.ButtonSetText(ControlHandle, StringUtil.GetBytes(value));}
+            get { return StringUtil.GetString(NativeMethods.ButtonText(handle)); }
+            set { NativeMethods.ButtonSetText(handle, StringUtil.GetBytes(value));}
         }
 
         public Button(string text) : base(text)
@@ -26,13 +26,13 @@ namespace DevZH.UI
                 ControlHandle = NativeMethods.NewButton(StringUtil.GetBytes(text));
                 InitializeEvents();
             }*/
-            ControlHandle = NativeMethods.NewButton(StringUtil.GetBytes(text));
+            handle = NativeMethods.NewButton(StringUtil.GetBytes(text));
             InitializeEvents();
         }
 
         protected void InitializeEvents()
         {
-            NativeMethods.ButtonOnClicked(ControlHandle, (button, data) =>
+            NativeMethods.ButtonOnClicked(handle, (button, data) =>
             {
                 OnClick(EventArgs.Empty);
             }, IntPtr.Zero);

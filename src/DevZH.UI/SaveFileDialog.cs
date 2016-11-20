@@ -21,7 +21,7 @@ namespace DevZH.UI
 
         public bool Show()
         {
-            Path = StringUtil.GetString(NativeMethods.SaveFile(_parent.ControlHandle));
+            Path = StringUtil.GetString(NativeMethods.SaveFile(_parent.handle));
             if (string.IsNullOrEmpty(Path))
             {
                 return false;

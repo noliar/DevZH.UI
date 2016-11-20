@@ -9,12 +9,12 @@ namespace DevZH.UI.Interop
     internal partial class NativeMethods
     {
         [DllImport(LibUI, CallingConvention = CallingConvention.Cdecl, EntryPoint = "uiProgressBarValue")]
-        public static extern int ProgressBarValue(ControlHandle progressBar);
+        public static extern int ProgressBarValue(IntPtr progressBar);
 
         [DllImport(LibUI, CallingConvention = CallingConvention.Cdecl, EntryPoint = "uiProgressBarSetValue")]
-        public static extern void ProgressBarSetValue(ControlHandle progressBar, int number);
+        public static extern void ProgressBarSetValue(IntPtr progressBar, int number);
 
         [DllImport(LibUI, CallingConvention = CallingConvention.Cdecl, EntryPoint = "uiNewProgressBar")]
-        public static extern ControlHandle NewProgressBar();
+        public static extern IntPtr NewProgressBar();
     }
 }

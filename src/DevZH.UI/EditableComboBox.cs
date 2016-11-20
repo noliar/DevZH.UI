@@ -15,14 +15,14 @@ namespace DevZH.UI
         {
             get
             {
-                _text = StringUtil.GetString(NativeMethods.EditableComboBoxText(ControlHandle));
+                _text = StringUtil.GetString(NativeMethods.EditableComboBoxText(handle));
                 return _text;
             }
             set
             {
                 if (_text != value)
                 {
-                    NativeMethods.EditableComboBoxSetText(ControlHandle, StringUtil.GetBytes(value));
+                    NativeMethods.EditableComboBoxSetText(handle, StringUtil.GetBytes(value));
                     _text = value;
                 }
             }
@@ -30,7 +30,7 @@ namespace DevZH.UI
 
         public EditableComboBox()
         {
-            ControlHandle = NativeMethods.NewEditableComboBox();
+            handle = NativeMethods.NewEditableComboBox();
             InitializeEvents();
         }
 
@@ -38,20 +38,20 @@ namespace DevZH.UI
         {
             if (text == null)
             {
-                NativeMethods.EditableComboBoxAppend(ControlHandle, StringUtil.GetBytes(null));
+                NativeMethods.EditableComboBoxAppend(handle, StringUtil.GetBytes(null));
             }
             else
             {
                 foreach (var s in text)
                 {
-                    NativeMethods.EditableComboBoxAppend(ControlHandle, StringUtil.GetBytes(s));
+                    NativeMethods.EditableComboBoxAppend(handle, StringUtil.GetBytes(s));
                 }
             }
         }
 
         protected void InitializeEvents()
         {
-            NativeMethods.EditableComboBoxOnChanged(ControlHandle, (box, data) =>
+            NativeMethods.EditableComboBoxOnChanged(handle, (box, data) =>
             {
                 OnTextChanged(EventArgs.Empty);
             }, IntPtr.Zero);

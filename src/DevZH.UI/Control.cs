@@ -12,8 +12,13 @@ namespace DevZH.UI
     /// TODO: store some info.
     /// TODO: add some event.
     /// </summary>
-    public abstract class Control : IDisposable, IControlHandle
+    public abstract class Control : IDisposable
     {
+        /// <summary>
+        /// It stored a pointer to a control instance.
+        /// </summary>
+        protected internal IntPtr handle { get; protected set; }
+
         public event EventHandler LocationChanged;
 
         public event EventHandler Resize;
@@ -22,12 +27,7 @@ namespace DevZH.UI
 
         public event EventHandler<TextChangedEventArgs> TextChanged;
 
-        internal static Dictionary<ControlHandle, Control> ControlCaches = new Dictionary<ControlHandle, Control>();
-
-        /// <summary>
-        /// It stored a pointer to a control instance.
-        /// </summary>
-        public ControlHandle ControlHandle { get; protected set; }
+        internal static Dictionary<IntPtr, Control> ControlCaches = new Dictionary<IntPtr, Control>();
 
         public Control Parent { get; internal set; }
 
@@ -49,29 +49,29 @@ namespace DevZH.UI
 
         protected internal bool Verify()
         {
-            return this.ControlHandle != null && !this.ControlHandle.IsInvalid;
+            return this.handle != IntPtr.Zero;
         }
 
         /// <summary>
         /// The handle that this control is bound to.
         /// </summary>
-        public UIntPtr Handle => NativeMethods.ControlHandle(this.ControlHandle);
+        public UIntPtr Handle => NativeMethods.ControlHandle(this.handle);
 
         public virtual bool Enabled
         {
             get
             {
-                return NativeMethods.ControlEnabled(this.ControlHandle);
+                return NativeMethods.ControlEnabled(this.handle);
             }
             set
             {
                 if (value)
                 {
-                    NativeMethods.ControlEnable(this.ControlHandle);
+                    NativeMethods.ControlEnable(this.handle);
                 }
                 else
                 {
-                    NativeMethods.ControlDisable(this.ControlHandle);
+                    NativeMethods.ControlDisable(this.handle);
                 }
             }
         }
@@ -81,18 +81,18 @@ namespace DevZH.UI
         {
             get
             {
-                return NativeMethods.ControlVisible(this.ControlHandle);
+                return NativeMethods.ControlVisible(this.handle);
             }
             set
             {
                 if(_visible == value) return;
                 if (value)
                 {
-                    NativeMethods.ControlShow(this.ControlHandle);
+                    NativeMethods.ControlShow(this.handle);
                 }
                 else
                 {
-                    NativeMethods.ControlHide(this.ControlHandle);
+                    NativeMethods.ControlHide(this.handle);
                 }
                 _visible = value;
             }
@@ -104,7 +104,7 @@ namespace DevZH.UI
             {
                 if (Verify())
                 {
-                    return NativeMethods.ControlToplevel(this.ControlHandle);
+                    return NativeMethods.ControlToplevel(this.handle);
                 }
                 return false;
             }
@@ -124,7 +124,7 @@ namespace DevZH.UI
 
         public void Dispose(bool disposing)
         {
-            if (!ControlHandle.IsInvalid)
+            if (handle != IntPtr.Zero)
             {
                 Destroy();
             }
@@ -133,7 +133,7 @@ namespace DevZH.UI
         protected virtual void Destroy()
         {
             // TODO maybe store some info
-            NativeMethods.ControlDestroy(ControlHandle);
+            NativeMethods.ControlDestroy(handle);
         }
 
         public virtual void Show()

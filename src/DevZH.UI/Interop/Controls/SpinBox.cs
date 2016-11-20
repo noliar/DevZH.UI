@@ -9,15 +9,15 @@ namespace DevZH.UI.Interop
     internal partial class NativeMethods
     {
         [DllImport(LibUI, CallingConvention = CallingConvention.Cdecl, EntryPoint = "uiSpinboxValue")]
-        public static extern int SpinBoxValue(ControlHandle spinBox);
+        public static extern int SpinBoxValue(IntPtr spinBox);
 
         [DllImport(LibUI, CallingConvention = CallingConvention.Cdecl, EntryPoint = "uiSpinboxSetValue")]
-        public static extern void SpinBoxSetValue(ControlHandle spinBox, int value);
+        public static extern void SpinBoxSetValue(IntPtr spinBox, int value);
 
         [DllImport(LibUI, CallingConvention = CallingConvention.Cdecl, EntryPoint = "uiSpinboxOnChanged")]
-        public static extern void SpinBoxOnChanged(ControlHandle spinBox, SpinBoxOnChangedDelegate spinBoxOnChanged, IntPtr data);
+        public static extern void SpinBoxOnChanged(IntPtr spinBox, SpinBoxOnChangedDelegate spinBoxOnChanged, IntPtr data);
 
         [DllImport(LibUI, CallingConvention = CallingConvention.Cdecl, EntryPoint = "uiNewSpinbox")]
-        public static extern ControlHandle NewSpinBox(int min, int max);
+        public static extern IntPtr NewSpinBox(int min, int max);
     }
 }

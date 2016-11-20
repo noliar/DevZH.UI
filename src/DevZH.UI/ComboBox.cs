@@ -13,7 +13,7 @@ namespace DevZH.UI
 
         public ComboBox()
         {
-            ControlHandle = NativeMethods.NewComboBox();
+            handle = NativeMethods.NewComboBox();
             InitializeEvents();
         }
 
@@ -21,13 +21,13 @@ namespace DevZH.UI
         {
             if (text == null)
             {
-                NativeMethods.ComboBoxAppend(ControlHandle, StringUtil.GetBytes(null));
+                NativeMethods.ComboBoxAppend(handle, StringUtil.GetBytes(null));
             }
             else
             {
                 foreach (var s in text)
                 {
-                    NativeMethods.ComboBoxAppend(ControlHandle, StringUtil.GetBytes(s));
+                    NativeMethods.ComboBoxAppend(handle, StringUtil.GetBytes(s));
                 }
             }
         }
@@ -37,14 +37,14 @@ namespace DevZH.UI
         {
             get
             {
-                _index = NativeMethods.ComboBoxSelected(ControlHandle);
+                _index = NativeMethods.ComboBoxSelected(handle);
                 return _index;
             }
             set
             {
                 if (_index != value)
                 {
-                    NativeMethods.ComboBoxSetSelected(ControlHandle, value);
+                    NativeMethods.ComboBoxSetSelected(handle, value);
                     _index = value;
                 }
             }
@@ -57,7 +57,7 @@ namespace DevZH.UI
 
         protected void InitializeEvents()
         {
-            NativeMethods.ComboBoxOnSelected(ControlHandle, (box, data) =>
+            NativeMethods.ComboBoxOnSelected(handle, (box, data) =>
             {
                 OnSelected(EventArgs.Empty);
             }, IntPtr.Zero);

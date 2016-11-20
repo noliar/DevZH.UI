@@ -15,14 +15,14 @@ namespace DevZH.UI
         {
             get
             {
-                _value = NativeMethods.SliderValue(ControlHandle);
+                _value = NativeMethods.SliderValue(handle);
                 return _value;
             }
             set
             {
                 if (_value != value)
                 {
-                    NativeMethods.SliderSetValue(ControlHandle, value);
+                    NativeMethods.SliderSetValue(handle, value);
                     _value = value;
                 }
             }
@@ -30,7 +30,7 @@ namespace DevZH.UI
 
         public Slider(int min, int max)
         {
-            ControlHandle = NativeMethods.NewSlider(min, max);
+            handle = NativeMethods.NewSlider(min, max);
             InitializeEvents();
         }
 
@@ -41,7 +41,7 @@ namespace DevZH.UI
 
         protected void InitializeEvents()
         {
-            NativeMethods.SliderOnChanged(ControlHandle, (slider, data) =>
+            NativeMethods.SliderOnChanged(handle, (slider, data) =>
             {
                 OnValueChanged(EventArgs.Empty);
             }, IntPtr.Zero);

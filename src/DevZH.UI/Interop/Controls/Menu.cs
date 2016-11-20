@@ -9,24 +9,24 @@ namespace DevZH.UI.Interop
     internal partial class NativeMethods
     {
         [DllImport(LibUI, CallingConvention = CallingConvention.Cdecl, EntryPoint = "uiMenuAppendItem")]
-        public static extern ControlHandle MenuAppendItem(ControlHandle menu, byte[] name);
+        public static extern IntPtr MenuAppendItem(IntPtr menu, byte[] name);
 
         [DllImport(LibUI, CallingConvention = CallingConvention.Cdecl, EntryPoint = "uiMenuAppendCheckItem")]
-        public static extern ControlHandle MenuAppendCheckItem(ControlHandle menu, byte[] name);
+        public static extern IntPtr MenuAppendCheckItem(IntPtr menu, byte[] name);
 
         [DllImport(LibUI, CallingConvention = CallingConvention.Cdecl, EntryPoint = "uiMenuAppendQuitItem")]
-        public static extern ControlHandle MenuAppendQuitItem(ControlHandle menu);
+        public static extern IntPtr MenuAppendQuitItem(IntPtr menu);
 
         [DllImport(LibUI, CallingConvention = CallingConvention.Cdecl, EntryPoint = "uiMenuAppendPreferencesItem")]
-        public static extern ControlHandle MenuAppendPreferencesItem(ControlHandle menu);
+        public static extern IntPtr MenuAppendPreferencesItem(IntPtr menu);
 
         [DllImport(LibUI, CallingConvention = CallingConvention.Cdecl, EntryPoint = "uiMenuAppendAboutItem")]
-        public static extern ControlHandle MenuAppendAboutItem(ControlHandle menu);
+        public static extern IntPtr MenuAppendAboutItem(IntPtr menu);
 
         [DllImport(LibUI, CallingConvention = CallingConvention.Cdecl, EntryPoint = "uiMenuAppendSeparator")]
-        public static extern void MenuAppendSeparator(ControlHandle menu);
+        public static extern void MenuAppendSeparator(IntPtr menu);
 
         [DllImport(LibUI, CallingConvention = CallingConvention.Cdecl, EntryPoint = "uiNewMenu")]
-        public static extern ControlHandle NewMenu(byte[] name);
+        public static extern IntPtr NewMenu(byte[] name);
     }
 }

@@ -11,13 +11,13 @@ namespace DevZH.UI.Interop
     {
         // TODO document this returns a new font
         [DllImport(LibUI, CallingConvention = CallingConvention.Cdecl, EntryPoint = "uiFontButtonFont")]
-        public static extern ControlHandle FontButtonFont(ControlHandle button);
+        public static extern IntPtr FontButtonFont(IntPtr button);
         
         // TODO SetFont, mechanics
         [DllImport(LibUI, CallingConvention = CallingConvention.Cdecl, EntryPoint = "uiFontButtonOnChanged")]
-        public static extern void FontButtonOnChanged(ControlHandle button, FontButtonOnChangedDelegate fontButtonOnChanged, IntPtr data);
+        public static extern void FontButtonOnChanged(IntPtr button, FontButtonOnChangedDelegate fontButtonOnChanged, IntPtr data);
 
         [DllImport(LibUI, CallingConvention = CallingConvention.Cdecl, EntryPoint = "uiNewFontButton")]
-        public static extern ControlHandle NewFontButton();
+        public static extern IntPtr NewFontButton();
     }
 }

@@ -16,10 +16,10 @@ namespace DevZH.UI
             switch (mbTypes)
             {
                 case MessageBoxTypes.Info:
-                    NativeMethods.MsgBox(owner.ControlHandle, t, c);
+                    NativeMethods.MsgBox(owner.handle, t, c);
                     break;
                 case MessageBoxTypes.Error:
-                    NativeMethods.MsgBoxError(owner.ControlHandle, t, c);
+                    NativeMethods.MsgBoxError(owner.handle, t, c);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(mbTypes), mbTypes, null);

@@ -14,30 +14,30 @@ namespace DevZH.UI
 
         public CheckBox(string text) : base(text)
         {
-            ControlHandle = NativeMethods.NewCheckBox(StringUtil.GetBytes(text));
+            handle = NativeMethods.NewCheckBox(StringUtil.GetBytes(text));
             InitializeEvents();
         }
 
         public override string Text {
             get
             {
-                return StringUtil.GetString(NativeMethods.CheckBoxText(this.ControlHandle));
+                return StringUtil.GetString(NativeMethods.CheckBoxText(this.handle));
             }
             set
             {
-                NativeMethods.CheckBoxSetText(ControlHandle, StringUtil.GetBytes(value));
+                NativeMethods.CheckBoxSetText(handle, StringUtil.GetBytes(value));
             }
         }
 
         public bool IsChecked
         {
-            get { return NativeMethods.CheckBoxChecked(ControlHandle); }
-            set { NativeMethods.CheckBoxSetChecked(ControlHandle, value);}
+            get { return NativeMethods.CheckBoxChecked(handle); }
+            set { NativeMethods.CheckBoxSetChecked(handle, value);}
         }
 
         protected void InitializeEvents()
         {
-            NativeMethods.CheckBoxOnToggled(ControlHandle, (checkbox, data) =>
+            NativeMethods.CheckBoxOnToggled(handle, (checkbox, data) =>
             {
                 OnToggle(EventArgs.Empty);
             }, IntPtr.Zero);

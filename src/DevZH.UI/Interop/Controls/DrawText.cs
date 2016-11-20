@@ -10,6 +10,6 @@ namespace DevZH.UI.Interop
     internal partial class NativeMethods
     {
         [DllImport(LibUI, CallingConvention = CallingConvention.Cdecl, EntryPoint = "uiDrawText")]
-        public static extern void DrawText(ControlHandle context, double x, double y, ControlHandle layout);
+        public static extern void DrawText(IntPtr context, double x, double y, IntPtr layout);
     }
 }

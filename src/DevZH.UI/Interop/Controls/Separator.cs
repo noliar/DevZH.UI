@@ -9,9 +9,9 @@ namespace DevZH.UI.Interop
     internal partial class NativeMethods
     {
         [DllImport(LibUI, CallingConvention = CallingConvention.Cdecl, EntryPoint = "uiNewHorizontalSeparator")]
-        public static extern ControlHandle NewHorizontalSeparator();
+        public static extern IntPtr NewHorizontalSeparator();
 
         [DllImport(LibUI, CallingConvention = CallingConvention.Cdecl, EntryPoint = "uiNewVerticalSeparator")]
-        public static extern ControlHandle NewVerticalSeparator();
+        public static extern IntPtr NewVerticalSeparator();
     }
 }

@@ -9,12 +9,12 @@ namespace DevZH.UI.Interop
     internal partial class NativeMethods
     {
         [DllImport(LibUI, CallingConvention = CallingConvention.Cdecl, EntryPoint = "uiNewDateTimePicker")]
-        public static extern ControlHandle NewDateTimePicker();
+        public static extern IntPtr NewDateTimePicker();
 
         [DllImport(LibUI, CallingConvention = CallingConvention.Cdecl, EntryPoint = "uiNewDatePicker")]
-        public static extern ControlHandle NewDatePicker();
+        public static extern IntPtr NewDatePicker();
 
         [DllImport(LibUI, CallingConvention = CallingConvention.Cdecl, EntryPoint = "uiNewTimePicker")]
-        public static extern ControlHandle NewTimePicker();
+        public static extern IntPtr NewTimePicker();
     }
 }

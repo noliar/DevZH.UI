@@ -30,8 +30,8 @@ namespace DevZH.UI
 
         public bool AllowPadding
         {
-            get { return NativeMethods.BoxPadded(this.ControlHandle); }
-            set { NativeMethods.BoxSetPadded(ControlHandle, value);}
+            get { return NativeMethods.BoxPadded(this.handle); }
+            set { NativeMethods.BoxSetPadded(handle, value);}
         }
 
         private BoxItemCollection _children;
@@ -52,7 +52,7 @@ namespace DevZH.UI
     {
         public VerticalBox()
         {
-            this.ControlHandle = NativeMethods.NewVerticalBox();
+            this.handle = NativeMethods.NewVerticalBox();
             this.Orientation = Orientation.Vertical;
         }
     }
@@ -61,7 +61,7 @@ namespace DevZH.UI
     {
         public HorizontalBox()
         {
-            this.ControlHandle = NativeMethods.NewHorizontalBox();
+            this.handle = NativeMethods.NewHorizontalBox();
             Orientation = Orientation.Horizontal;
         }
     }
@@ -75,7 +75,7 @@ namespace DevZH.UI
 
         public override bool Remove(Control item)
         {
-            NativeMethods.BoxDelete(Owner.ControlHandle, item.Index);
+            NativeMethods.BoxDelete(Owner.handle, item.Index);
             return base.Remove(item);
         }
 
@@ -91,7 +91,7 @@ namespace DevZH.UI
                 throw new InvalidOperationException("cannot add the same control.");
             }
             if(child == null) return;
-            NativeMethods.BoxAppend(Owner.ControlHandle, child.ControlHandle, stretchy);
+            NativeMethods.BoxAppend(Owner.handle, child.handle, stretchy);
             base.Add(child);
         }
     }

@@ -21,21 +21,21 @@ namespace DevZH.UI
                 {
                     _font = new Font();
                 }
-                _font.ControlHandle = NativeMethods.FontButtonFont(ControlHandle);
+                _font.handle = NativeMethods.FontButtonFont(handle);
                 return _font;
             }
         }
 
         public FontPicker()
         {
-            this.ControlHandle = NativeMethods.NewFontButton();
+            this.handle = NativeMethods.NewFontButton();
             InitializeEvents();
         }
 
 
         protected void InitializeEvents()
         {
-            NativeMethods.FontButtonOnChanged(ControlHandle, (button, data) =>
+            NativeMethods.FontButtonOnChanged(handle, (button, data) =>
             {
                 OnFontChanged(EventArgs.Empty);
             }, IntPtr.Zero);

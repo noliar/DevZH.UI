@@ -13,10 +13,10 @@ namespace DevZH.UI
             switch (orientation)
             {
                 case Orientation.Horizontal:
-                    ControlHandle = NativeMethods.NewHorizontalSeparator();
+                    handle = NativeMethods.NewHorizontalSeparator();
                     break;
                 case Orientation.Vertical:
-                    ControlHandle = NativeMethods.NewVerticalSeparator();
+                    handle = NativeMethods.NewVerticalSeparator();
                     break;
             }
         }

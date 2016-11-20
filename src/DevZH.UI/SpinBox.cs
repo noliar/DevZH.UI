@@ -16,14 +16,14 @@ namespace DevZH.UI
         {
             get
             {
-                _value = NativeMethods.SpinBoxValue(ControlHandle);
+                _value = NativeMethods.SpinBoxValue(handle);
                 return _value;
             }
             set
             {
                 if (_value != value)
                 {
-                    NativeMethods.SpinBoxSetValue(ControlHandle, value);
+                    NativeMethods.SpinBoxSetValue(handle, value);
                     _value = value;
                 }
             }
@@ -31,7 +31,7 @@ namespace DevZH.UI
 
         public SpinBox(int min, int max)
         {
-            ControlHandle = NativeMethods.NewSpinBox(min, max);
+            handle = NativeMethods.NewSpinBox(min, max);
             InitializeEvents();
         }
 
@@ -42,7 +42,7 @@ namespace DevZH.UI
 
         protected void InitializeEvents()
         {
-            NativeMethods.SpinBoxOnChanged(ControlHandle, (box, data) =>
+            NativeMethods.SpinBoxOnChanged(handle, (box, data) =>
             {
                 OnValueChanged(EventArgs.Empty);
             }, IntPtr.Zero);

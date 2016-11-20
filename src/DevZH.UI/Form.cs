@@ -12,7 +12,7 @@ namespace DevZH.UI
     {
         public Form()
         {
-            ControlHandle = NativeMethods.NewForm();
+            handle = NativeMethods.NewForm();
         }
 
         private bool _allowPadding;
@@ -20,14 +20,14 @@ namespace DevZH.UI
         {
             get
             {
-                _allowPadding = NativeMethods.FormPadded(ControlHandle);
+                _allowPadding = NativeMethods.FormPadded(handle);
                 return _allowPadding;
             }
             set
             {
                 if (_allowPadding != value)
                 {
-                    NativeMethods.FormSetPadded(ControlHandle, value);
+                    NativeMethods.FormSetPadded(handle, value);
                     _allowPadding = value;
                 }
             }
@@ -63,13 +63,13 @@ namespace DevZH.UI
                 throw new InvalidOperationException("cannot add the same control.");
             }
             if (child == null) return;
-            NativeMethods.FormAppend(Owner.ControlHandle, StringUtil.GetBytes(label), child.ControlHandle, stretchy);
+            NativeMethods.FormAppend(Owner.handle, StringUtil.GetBytes(label), child.handle, stretchy);
             base.Add(child);
         }
 
         public override bool Remove(Control item)
         {
-            NativeMethods.FormDelete(Owner.ControlHandle, item.Index);
+            NativeMethods.FormDelete(Owner.handle, item.Index);
             return base.Remove(item);
         }
     }

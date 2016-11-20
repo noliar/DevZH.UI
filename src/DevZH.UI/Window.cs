@@ -25,7 +25,7 @@ namespace DevZH.UI
             {
                 if (value != null && value.Verify())
                 {
-                    NativeMethods.WindowSetChild(ControlHandle, value.ControlHandle);
+                    NativeMethods.WindowSetChild(handle, value.handle);
                 }
             }
         }
@@ -40,7 +40,7 @@ namespace DevZH.UI
             {
                 var title = value;
                 if (!ValidTitle(title)) title = _title;
-                NativeMethods.WindowSetTitle(ControlHandle, StringUtil.GetBytes(title));
+                NativeMethods.WindowSetTitle(handle, StringUtil.GetBytes(title));
                 _title = title;
             }
         }
@@ -52,7 +52,7 @@ namespace DevZH.UI
             get
             {
                 int x, y;
-                NativeMethods.WindowPosition(ControlHandle, out x, out y);
+                NativeMethods.WindowPosition(handle, out x, out y);
                 _location.X = x;
                 _location.Y = y;
                 return _location;
@@ -60,7 +60,7 @@ namespace DevZH.UI
             set
             {
                 _location = value;
-                NativeMethods.WindowSetPosition(ControlHandle, (int) value.X, (int) value.Y);
+                NativeMethods.WindowSetPosition(handle, (int) value.X, (int) value.Y);
                 StartPosition = WindowStartPosition.Manual;
             }
         }
@@ -71,7 +71,7 @@ namespace DevZH.UI
             get
             {
                 int w, h;
-                NativeMethods.WindowContentSize(ControlHandle, out w, out h);
+                NativeMethods.WindowContentSize(handle, out w, out h);
                 _size.Width = w;
                 _size.Height = h;
                 return _size;
@@ -79,34 +79,34 @@ namespace DevZH.UI
             set
             {
                 _size = value;
-                NativeMethods.WindowSetContentSize(ControlHandle, (int) value.Width, (int) value.Height);
+                NativeMethods.WindowSetContentSize(handle, (int) value.Width, (int) value.Height);
             }
         }
 
         public bool AllowMargins
         {
-            get { return NativeMethods.WindowMargined(ControlHandle); }
-            set { NativeMethods.WindowSetMargined(ControlHandle, value);}
+            get { return NativeMethods.WindowMargined(handle); }
+            set { NativeMethods.WindowSetMargined(handle, value);}
         }
 
         public bool FullScreen
         {
-            get { return NativeMethods.WindowFullscreen(ControlHandle); }
-            set { NativeMethods.WindowSetFullscreen(ControlHandle, value);}
+            get { return NativeMethods.WindowFullscreen(handle); }
+            set { NativeMethods.WindowSetFullscreen(handle, value);}
         }
 
         public bool Borderless
         {
-            get { return NativeMethods.WindowBorderless(ControlHandle); }
-            set { NativeMethods.WindowSetBorderless(ControlHandle, value); }
+            get { return NativeMethods.WindowBorderless(handle); }
+            set { NativeMethods.WindowSetBorderless(handle, value); }
         }
 
         public Window(string title, int width = 500, int height = 200, bool hasMemubar = false)
         {
             if (!ValidTitle(title)) title = _title;
-            this.ControlHandle = NativeMethods.NewWindow(StringUtil.GetBytes(title), width, height, hasMemubar);
+            this.handle = NativeMethods.NewWindow(StringUtil.GetBytes(title), width, height, hasMemubar);
             _title = title;
-            Windows.Add(this.ControlHandle.DangerousGetHandle(), this);
+            Windows.Add(this.handle, this);
             this.InitializeEvents();
             this.InitializeData();
         }
@@ -117,7 +117,7 @@ namespace DevZH.UI
             {
                 throw new TypeInitializationException(nameof(Window), new InvalidComObjectException());
             }
-            NativeMethods.WindowOnClosing(this.ControlHandle, (window, data) =>
+            NativeMethods.WindowOnClosing(this.handle, (window, data) =>
             {
                 var args = new CancelEventArgs();
                 OnClosing(args);
@@ -128,7 +128,7 @@ namespace DevZH.UI
                 {
                     if (Windows.Count > 1)
                     {
-                        var intptr = this.ControlHandle.DangerousGetHandle();
+                        var intptr = this.handle;
                         Windows.Remove(intptr);
                     }
                     else
@@ -139,12 +139,12 @@ namespace DevZH.UI
                 return !cancel;
             }, IntPtr.Zero);
 
-            NativeMethods.WindowOnPositionChanged(this.ControlHandle, (window, data) =>
+            NativeMethods.WindowOnPositionChanged(this.handle, (window, data) =>
             {
                 OnLocationChanged(EventArgs.Empty);
             }, IntPtr.Zero);
 
-            NativeMethods.WindowOnContentSizeChanged(this.ControlHandle, (window, data) =>
+            NativeMethods.WindowOnContentSizeChanged(this.handle, (window, data) =>
             {
                 OnResize(EventArgs.Empty);
             }, IntPtr.Zero);
@@ -176,14 +176,14 @@ namespace DevZH.UI
 
         public void Close()
         {
-            var intptr = this.ControlHandle.DangerousGetHandle();
+            var intptr = this.handle;
             base.Destroy();
             Windows.Remove(intptr);
         }
 
         public void CenterToScreen()
         {
-            NativeMethods.WindowCenter(ControlHandle);
+            NativeMethods.WindowCenter(handle);
         }
     }
 }

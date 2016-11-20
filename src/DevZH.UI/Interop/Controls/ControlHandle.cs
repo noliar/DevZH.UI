@@ -4,7 +4,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 
-namespace DevZH.UI.Interop
+/*namespace DevZH.UI.Interop
 {
     public class ControlHandle : SafeHandle
     {
@@ -28,3 +28,4 @@ namespace DevZH.UI.Interop
         public override bool IsInvalid => handle == IntPtr.Zero;
     }
 }
+*/

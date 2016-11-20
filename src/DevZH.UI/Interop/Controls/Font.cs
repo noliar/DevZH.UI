@@ -10,20 +10,20 @@ namespace DevZH.UI.Interop
     internal partial class NativeMethods
     {
         [DllImport(LibUI, CallingConvention = CallingConvention.Cdecl, EntryPoint = "uiDrawLoadClosestFont")]
-        public static extern ControlHandle DrawLoadClosestFont(ref FontDescriptor desc);
+        public static extern IntPtr DrawLoadClosestFont(ref FontDescriptor desc);
 
         [DllImport(LibUI, CallingConvention = CallingConvention.Cdecl, EntryPoint = "uiDrawFreeTextFont")]
-        public static extern void DrawFreeTextFont(ControlHandle font);
+        public static extern void DrawFreeTextFont(IntPtr font);
 
         [DllImport(LibUI, CallingConvention = CallingConvention.Cdecl, EntryPoint = "uiDrawTextFontHandle")]
-        public static extern UIntPtr DrawTextFontHandle(ControlHandle font);
+        public static extern UIntPtr DrawTextFontHandle(IntPtr font);
 
         [DllImport(LibUI, CallingConvention = CallingConvention.Cdecl, EntryPoint = "uiDrawTextFontDescribe")]
-        public static extern void DrawTextFontDescribe(ControlHandle font, out FontDescriptor desc);
+        public static extern void DrawTextFontDescribe(IntPtr font, out FontDescriptor desc);
 
         // TODO make copy with given attributes methods?
         // TODO yuck this name
         [DllImport(LibUI, CallingConvention = CallingConvention.Cdecl, EntryPoint = "uiDrawTextFontGetMetrics")]
-        public static extern void DrawTextFontGetMetrics(ControlHandle font, out FontMetrics metrics);
+        public static extern void DrawTextFontGetMetrics(IntPtr font, out FontMetrics metrics);
     }
 }

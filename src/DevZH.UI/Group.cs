@@ -11,19 +11,19 @@ namespace DevZH.UI
     {
         public Group(string title)
         {
-            ControlHandle = NativeMethods.NewGroup(StringUtil.GetBytes(title));
+            handle = NativeMethods.NewGroup(StringUtil.GetBytes(title));
         }
 
         public string Title
         {
-            get { return StringUtil.GetString(NativeMethods.GroupTitle(ControlHandle)); }
-            set { NativeMethods.GroupSetTitle(ControlHandle, StringUtil.GetBytes(value));}
+            get { return StringUtil.GetString(NativeMethods.GroupTitle(handle)); }
+            set { NativeMethods.GroupSetTitle(handle, StringUtil.GetBytes(value));}
         }
 
         public bool AllowMargins
         {
-            get { return NativeMethods.GroupMargined(ControlHandle); }
-            set { NativeMethods.GroupSetMargined(ControlHandle, value);}
+            get { return NativeMethods.GroupMargined(handle); }
+            set { NativeMethods.GroupSetMargined(handle, value);}
         }
 
         private Control _child;
@@ -34,7 +34,7 @@ namespace DevZH.UI
             {
                 if (_child != value && value.Verify())
                 {
-                    NativeMethods.GroupSetChild(ControlHandle, value.ControlHandle);
+                    NativeMethods.GroupSetChild(handle, value.handle);
                     _child = value;
                 }
             }

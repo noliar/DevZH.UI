@@ -10,7 +10,7 @@ namespace DevZH.UI
     {
         public ProgressBar()
         {
-            ControlHandle = NativeMethods.NewProgressBar();
+            handle = NativeMethods.NewProgressBar();
         }
 
         private int _value;
@@ -18,14 +18,14 @@ namespace DevZH.UI
         {
             get
             {
-                _value = NativeMethods.ProgressBarValue(ControlHandle);
+                _value = NativeMethods.ProgressBarValue(handle);
                 return _value;
             }
             set
             {
                 if (_value != value)
                 {
-                    NativeMethods.ProgressBarSetValue(ControlHandle, value);
+                    NativeMethods.ProgressBarSetValue(handle, value);
                     _value = value;
                 }
             }

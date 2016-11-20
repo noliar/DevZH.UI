@@ -8,28 +8,28 @@ using DevZH.UI.Utils;
 
 namespace DevZH.UI.Drawing
 {
-    public class FontFamilies : IControlHandle
+    public class FontFamilies
     {
-        public ControlHandle ControlHandle { get; private set; }
+        public IntPtr handle;
 
         public FontFamilies()
         {
-            ControlHandle = NativeMethods.DrawListFontFamilies();
+            handle = NativeMethods.DrawListFontFamilies();
         }
 
         public int Count
         {
-            get { return NativeMethods.DrawFontFamiliesNumFamilies(ControlHandle); }
+            get { return NativeMethods.DrawFontFamiliesNumFamilies(handle); }
         }
 
         public string this[int index]
         {
-            get { return StringUtil.GetString(NativeMethods.DrawFontFamiliesFamily(ControlHandle, index)); }
+            get { return StringUtil.GetString(NativeMethods.DrawFontFamiliesFamily(handle, index)); }
         }
 
         public void Free()
         {
-            NativeMethods.DrawFreeFontFamilies(ControlHandle);
+            NativeMethods.DrawFreeFontFamilies(handle);
         }
     }
 }

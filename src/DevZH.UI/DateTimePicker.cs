@@ -10,7 +10,7 @@ namespace DevZH.UI
     {
         public DateTimePicker()
         {
-            ControlHandle = NativeMethods.NewDateTimePicker();
+            handle = NativeMethods.NewDateTimePicker();
         }
     }
 
@@ -18,7 +18,7 @@ namespace DevZH.UI
     {
         public DatePicker()
         {
-            ControlHandle = NativeMethods.NewDatePicker();
+            handle = NativeMethods.NewDatePicker();
         }
     }
 
@@ -26,7 +26,7 @@ namespace DevZH.UI
     {
         public TimePicker()
         {
-            ControlHandle = NativeMethods.NewTimePicker();
+            handle = NativeMethods.NewTimePicker();
         }
     }
 }

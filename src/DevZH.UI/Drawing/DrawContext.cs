@@ -8,51 +8,51 @@ using DevZH.UI.Interop;
 
 namespace DevZH.UI.Drawing
 {
-    public class DrawContext : IControlHandle
+    public class DrawContext
     {
         public DrawContext(IntPtr ptr)
         {
-            ControlHandle = new ControlHandle(ptr);
+            handle = ptr;
         }
 
         public void Fill(Path path, Brush brush)
         {
             var tmp = brush.Internal;
-            NativeMethods.DrawFill(ControlHandle, path.ControlHandle, ref tmp);
+            NativeMethods.DrawFill(handle, path.ControlHandle, ref tmp);
         }
 
         public void Stroke(Path path, Brush brush, StrokeParams param)
         {
             var b = brush.Internal;
             var p = param.Internal;
-            NativeMethods.DrawStroke(ControlHandle, path.ControlHandle, ref b, ref p);
+            NativeMethods.DrawStroke(handle, path.ControlHandle, ref b, ref p);
         }
 
         public void Clip(Path path)
         {
-            NativeMethods.DrawClip(ControlHandle, path.ControlHandle);
+            NativeMethods.DrawClip(handle, path.ControlHandle);
         }
 
         public void Save()
         {
-            NativeMethods.DrawSave(ControlHandle);
+            NativeMethods.DrawSave(handle);
         }
 
         public void ReStore()
         {
-            NativeMethods.DrawRestore(ControlHandle);
+            NativeMethods.DrawRestore(handle);
         }
 
         public void Transform(Matrix matrix)
         {
-            NativeMethods.DrawTransform(ControlHandle, matrix);
+            NativeMethods.DrawTransform(handle, matrix);
         }
 
         public void DrawText(double x, double y, TextLayout layout)
         {
-            NativeMethods.DrawText(ControlHandle, x, y, layout.ControlHandle);
+            NativeMethods.DrawText(handle, x, y, layout.handle);
         }
 
-        public ControlHandle ControlHandle { get; }
+        protected IntPtr handle;
     }
 }

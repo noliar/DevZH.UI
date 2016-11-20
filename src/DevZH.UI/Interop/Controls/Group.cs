@@ -9,21 +9,21 @@ namespace DevZH.UI.Interop
     internal partial class NativeMethods
     {
         [DllImport(LibUI, CallingConvention = CallingConvention.Cdecl, EntryPoint = "uiGroupTitle")]
-        public static extern IntPtr GroupTitle(ControlHandle group);
+        public static extern IntPtr GroupTitle(IntPtr group);
 
         [DllImport(LibUI, CallingConvention = CallingConvention.Cdecl, EntryPoint = "uiGroupSetTitle")]
-        public static extern void GroupSetTitle(ControlHandle group, byte[] title);
+        public static extern void GroupSetTitle(IntPtr group, byte[] title);
 
         [DllImport(LibUI, CallingConvention = CallingConvention.Cdecl, EntryPoint = "uiGroupSetChild")]
-        public static extern void GroupSetChild(ControlHandle group, ControlHandle child);
+        public static extern void GroupSetChild(IntPtr group, IntPtr child);
 
         [DllImport(LibUI, CallingConvention = CallingConvention.Cdecl, EntryPoint = "uiGroupMargined")]
-        public static extern bool GroupMargined(ControlHandle group);
+        public static extern bool GroupMargined(IntPtr group);
 
         [DllImport(LibUI, CallingConvention = CallingConvention.Cdecl, EntryPoint = "uiGroupSetMargined")]
-        public static extern void GroupSetMargined(ControlHandle group, bool margined);
+        public static extern void GroupSetMargined(IntPtr group, bool margined);
 
         [DllImport(LibUI, CallingConvention = CallingConvention.Cdecl, EntryPoint = "uiNewGroup")]
-        public static extern ControlHandle NewGroup(byte[] title);
+        public static extern IntPtr NewGroup(byte[] title);
     }
 }

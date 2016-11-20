@@ -9,18 +9,18 @@ namespace DevZH.UI.Interop
     internal partial class NativeMethods
     {
         [DllImport(LibUI, CallingConvention = CallingConvention.Cdecl, EntryPoint = "uiFormAppend")]
-        public static extern void FormAppend(ControlHandle form, byte[] label, ControlHandle child, bool stretchy);
+        public static extern void FormAppend(IntPtr form, byte[] label, IntPtr child, bool stretchy);
 
         [DllImport(LibUI, CallingConvention = CallingConvention.Cdecl, EntryPoint = "uiFormDelete")]
-        public static extern void FormDelete(ControlHandle form, int index);
+        public static extern void FormDelete(IntPtr form, int index);
 
         [DllImport(LibUI, CallingConvention = CallingConvention.Cdecl, EntryPoint = "uiFormPadded")]
-        public static extern bool FormPadded(ControlHandle form);
+        public static extern bool FormPadded(IntPtr form);
 
         [DllImport(LibUI, CallingConvention = CallingConvention.Cdecl, EntryPoint = "uiFormSetPadded")]
-        public static extern void FormSetPadded(ControlHandle form, bool padded);
+        public static extern void FormSetPadded(IntPtr form, bool padded);
 
         [DllImport(LibUI, CallingConvention = CallingConvention.Cdecl, EntryPoint = "uiNewForm")]
-        public static extern ControlHandle NewForm();
+        public static extern IntPtr NewForm();
     }
 }

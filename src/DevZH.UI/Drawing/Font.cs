@@ -8,28 +8,27 @@ using DevZH.UI.Interop;
 
 namespace DevZH.UI.Drawing
 {
-    public class Font : IControlHandle
+    public class Font
     {
-        public ControlHandle ControlHandle { get; protected internal set; }
+        protected internal IntPtr handle { get; set; }
 
         public UIntPtr Handle
         {
-            get { return NativeMethods.DrawTextFontHandle(ControlHandle); }
+            get { return NativeMethods.DrawTextFontHandle(handle); }
         }
 
         internal Font()
         {
-            
         }
 
         public Font(FontDescriptor descriptor)
         {
-            ControlHandle = NativeMethods.DrawLoadClosestFont(ref descriptor);
+            handle = NativeMethods.DrawLoadClosestFont(ref descriptor);
         }
 
         public void Free()
         {
-            NativeMethods.DrawFreeTextFont(ControlHandle);
+            NativeMethods.DrawFreeTextFont(handle);
         }
 
         public FontDescriptor Describe
@@ -37,7 +36,7 @@ namespace DevZH.UI.Drawing
             get
             {
                 FontDescriptor value;
-                NativeMethods.DrawTextFontDescribe(ControlHandle, out value);
+                NativeMethods.DrawTextFontDescribe(handle, out value);
                 return value;
             }
         }
@@ -47,7 +46,7 @@ namespace DevZH.UI.Drawing
             get
             {
                 FontMetrics value;
-                NativeMethods.DrawTextFontGetMetrics(ControlHandle, out value);
+                NativeMethods.DrawTextFontGetMetrics(handle, out value);
                 return value;
             }
         }

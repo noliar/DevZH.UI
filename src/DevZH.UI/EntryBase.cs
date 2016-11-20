@@ -16,8 +16,8 @@ namespace DevZH.UI
 
         public override string Text
         {
-            get { return StringUtil.GetString(NativeMethods.EntryText(ControlHandle)); }
-            set { NativeMethods.EntrySetText(ControlHandle, StringUtil.GetBytes(value));}
+            get { return StringUtil.GetString(NativeMethods.EntryText(handle)); }
+            set { NativeMethods.EntrySetText(handle, StringUtil.GetBytes(value));}
         }
 
         private bool _readonly;
@@ -25,21 +25,21 @@ namespace DevZH.UI
         {
             get
             {
-                _readonly = NativeMethods.EntryReadOnly(ControlHandle);
+                _readonly = NativeMethods.EntryReadOnly(handle);
                 return _readonly;
             }
             set
             {
                 if (_readonly != value)
                 {
-                    NativeMethods.EntrySetReadOnly(ControlHandle, value);
+                    NativeMethods.EntrySetReadOnly(handle, value);
                 }
             }
         }
 
         protected void InitializeEvents()
         {
-            NativeMethods.EntryOnChanged(ControlHandle, (entry, data) =>
+            NativeMethods.EntryOnChanged(handle, (entry, data) =>
             {
                 OnTextChanged(EventArgs.Empty);
             }, IntPtr.Zero);
