@@ -12,7 +12,7 @@ namespace DevZH.UI.SimpleSample
         private NumbersPage _numbersPage;
         private DataChoosersPage _dataChoosersPage;
 
-        public MainWindow(string title = "DevZH.UI", int width = 500, int height = 200, bool hasMemubar = false) : base(title, width, height, hasMemubar)
+        public MainWindow(string title = "DevZH.UI", int width = 500, int height = 200, bool hasMenubar = false) : base(title, width, height, hasMenubar)
         {
             InitializeComponent();
         }
