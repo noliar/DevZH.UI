@@ -7,7 +7,6 @@
   "buildOptions": {
     "allowUnsafe": true
   },
-
   "packOptions": {
     "repository": {
       "type": "git",
@@ -20,18 +19,16 @@
       "netcore"
     ]
   },
-
   "dependencies": {
-    "NETStandard.Library": "1.6.0",
-
     "DevZH.LibUI": "1.0.0-*",
-
-    "System.ComponentModel": "4.0.1",
-    "System.Drawing.Primitives": "4.0.0",
-    "System.Text.Encoding.CodePages": "4.0.1"
+    "NETStandard.Library": "1.6.1",
+    "System.ComponentModel": "4.3.0",
+    "System.Drawing.Primitives": "4.3.0",
+    "System.Text.Encoding.CodePages": "4.3.0"
   },
-
   "frameworks": {
-    "netstandard1.3": {}
+    "netstandard1.6": {
+      "imports": "dnxcore50"
+    }
   }
 }
