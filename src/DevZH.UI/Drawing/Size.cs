@@ -9,8 +9,8 @@ namespace DevZH.UI.Drawing
     [StructLayout(LayoutKind.Sequential)]
     public struct Size
     {
-        public double _width;
-        public double _height;
+        private double _width;
+        private double _height;
 
         public Size(double width, double height)
         {

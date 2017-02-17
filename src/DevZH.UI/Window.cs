@@ -45,6 +45,8 @@ namespace DevZH.UI
             }
         }
 
+        /* //libui moved it to '_abort' part.
+        
         private Point _location = new Point();
 
         public Point Location
@@ -63,7 +65,7 @@ namespace DevZH.UI
                 NativeMethods.WindowSetPosition(handle, (int) value.X, (int) value.Y);
                 StartPosition = WindowStartPosition.Manual;
             }
-        }
+        }*/
 
         private Size _size = new Size();
         public Size Size
@@ -126,7 +128,7 @@ namespace DevZH.UI
                 var cancel = args.Cancel;
                 if (!cancel)
                 {
-                    if (Windows.Count > 1)
+                    if (Windows.Count > 1 && this != Application.MainWindow)
                     {
                         var intptr = this.handle;
                         Windows.Remove(intptr);
@@ -139,10 +141,10 @@ namespace DevZH.UI
                 return !cancel;
             }, IntPtr.Zero);
 
-            NativeMethods.WindowOnPositionChanged(this.handle, (window, data) =>
+            /*NativeMethods.WindowOnPositionChanged(this.handle, (window, data) =>
             {
                 OnLocationChanged(EventArgs.Empty);
-            }, IntPtr.Zero);
+            }, IntPtr.Zero);*/
 
             NativeMethods.WindowOnContentSizeChanged(this.handle, (window, data) =>
             {
@@ -161,16 +163,20 @@ namespace DevZH.UI
 
         protected bool ValidTitle(string title) => !string.IsNullOrEmpty(title);
 
+        /* No effect by now
         public WindowStartPosition StartPosition { get; set; }
+        */
 
         public override void Show()
         {
+            /* No effect by now
             switch (StartPosition)
             {
                 case WindowStartPosition.CenterScreen:
                     CenterToScreen();
                     break;
-            }
+            }*/
+
             base.Show();
         }
 
@@ -181,9 +187,10 @@ namespace DevZH.UI
             Windows.Remove(intptr);
         }
 
+        /* //libui moved it to '_abort' part.
         public void CenterToScreen()
         {
             NativeMethods.WindowCenter(handle);
-        }
+        }*/
     }
 }

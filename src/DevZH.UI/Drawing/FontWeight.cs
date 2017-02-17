@@ -15,7 +15,7 @@ namespace DevZH.UI.Drawing
         Medium,
         SemiBold,
         Bold,
-        UtraBold,
+        UltraBold,
         Heavy,
         UltraHeavy
     }

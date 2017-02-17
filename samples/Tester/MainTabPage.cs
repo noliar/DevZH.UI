@@ -10,14 +10,18 @@ namespace Tester
     {
         private Tab _mainTab;
         private HorizontalBox _mainBox;
+        private MainWindow _mainWindow;
 
         private Page2 _page2;
         private Page1 _page1;
         private Page6 _page6;
 
-        public MainTabPage(string name, HorizontalBox main) : base(name)
+        private Page15 _page15;
+
+        public MainTabPage(string name, HorizontalBox main, MainWindow window) : base(name)
         {
             _mainBox = main;
+            _mainWindow = window;
             InitializeComponent();
         }
 
@@ -31,9 +35,12 @@ namespace Tester
 
             _page6 = new Page6("Page 6");
 
+            _page15 = new Page15("Page 15", _mainWindow);
+
             _mainTab.Children.Add(_page1);
             _mainTab.Children.Add(_page2);
             _mainTab.Children.Add(_page6);
+            _mainTab.Children.Add(_page15);
         }
     }
 }

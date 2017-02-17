@@ -74,7 +74,10 @@ namespace DevZH.UI.Drawing
         public Size TransformtoSize()
         {
             var size = new Size();
-            NativeMethods.DrawMatrixTransformSize( this , out size._width, out size._height);
+            double width, height;
+            NativeMethods.DrawMatrixTransformSize( this , out width, out height);
+            size.Width = width;
+            size.Height = height;
             return size;
         }
     }

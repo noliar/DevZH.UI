@@ -22,7 +22,7 @@ namespace Tester
             _outerTab = new Tab();
             _mainBox.Children.Add(_outerTab, true);
 
-            _mainTabPage = new MainTabPage("Pages 1-5", _mainBox);
+            _mainTabPage = new MainTabPage("Pages 1-5", _mainBox, this);
             _outerTab.Children.Add(_mainTabPage);
         }
 
