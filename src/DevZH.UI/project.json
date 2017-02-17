@@ -22,13 +22,13 @@
   },
 
   "dependencies": {
-    "NETStandard.Library": "1.6.0",
+    "NETStandard.Library": "1.6.1",
 
     "DevZH.LibUI": "1.0.0-*",
 
-    "System.ComponentModel": "4.0.1",
-    "System.Drawing.Primitives": "4.0.0",
-    "System.Text.Encoding.CodePages": "4.0.1"
+    "System.ComponentModel": "4.3.0",
+    "System.Drawing.Primitives": "4.3.0",
+    "System.Text.Encoding.CodePages": "4.3.0"
   },
 
   "frameworks": {
