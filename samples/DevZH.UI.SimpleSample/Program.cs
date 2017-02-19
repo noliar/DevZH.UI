@@ -11,7 +11,7 @@ namespace DevZH.UI.SimpleSample
     {
         public static void Main(string[] args)
         {
-            var app = new Application();
+            var app = new Application(false);
             var window = new MainWindow("libui Control Gallery", 640, 480, true);
             window.AllowMargins = true;
             app.Run(window);
