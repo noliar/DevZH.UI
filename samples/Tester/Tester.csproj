@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp1.0</TargetFramework>
+    <AssemblyName>Tester</AssemblyName>
+    <OutputType>Exe</OutputType>
+    <PackageId>Tester</PackageId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\DevZH.UI\DevZH.UI.csproj" />
+  </ItemGroup>
+
+</Project>
