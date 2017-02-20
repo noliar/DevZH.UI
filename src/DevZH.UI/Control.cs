@@ -98,6 +98,13 @@ namespace DevZH.UI
             }
         }
 
+		// Keep consistency with winforms Control.Update(): https://msdn.microsoft.com/en-us/library/system.windows.forms.control.update(v=vs.110).aspx
+		public void Update()
+	    {
+		    Visible = false;
+			Visible = true;
+	    }
+
         public bool TopLevel
         {
             get

@@ -14,9 +14,9 @@ namespace Tester
             InitMenus(app);
             var window = new MainWindow("Main Window", 320, 240, true);
             window.AllowMargins = true;
-            // libui bug for gtk3?
-            //window.StartPosition = WindowStartPosition.CenterScreen;
-            app.Run(window);
+			// libui bug for gtk3: https://github.com/andlabs/libui/issues/183
+			//window.StartPosition = WindowStartPosition.CenterScreen;
+			app.Run(window);
         }
 
         private static void InitMenus(Application app)

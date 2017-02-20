@@ -109,7 +109,9 @@ namespace DevZH.UI
                 QueueMain(action);
                 NativeMethods.Main();
             }
+#pragma warning disable CS0168 // Variable is declared but never used
             catch (Exception ex)
+#pragma warning restore CS0168 // I think the author left it here for debugging
             {
                 return -1;
             }

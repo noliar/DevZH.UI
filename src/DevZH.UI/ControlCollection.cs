@@ -135,9 +135,17 @@ namespace DevZH.UI
             {
                 return false;
             }
+
+			// update indexes of other items
+	        foreach(var control in InnerList)
+	        {
+		        if(control.Index > item.Index)
+			        control.Index--;
+	        }
+
             item.Index = -1;
-            item.Parent = null;
-            return InnerList.Remove(item);
+			item.Parent = null;
+			return InnerList.Remove(item);
         }
 
         public int Count => InnerList.Count;
