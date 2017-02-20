@@ -79,6 +79,16 @@ namespace DevZH.UI.Drawing
         {
             NativeMethods.AreaScrollTo(handle, x, y, width, height);
         }
+
+        public void BeginUserWindowMove()
+        {
+            NativeMethods.AreaBeginUserWindowMove(handle);
+        }
+
+        public void BeginUserWindowResize(WindowResizeEdge edge)
+        {
+            NativeMethods.AreaBeginUserWindowResize(handle, edge);
+        }
     }
 
     public class Area : AreaBase

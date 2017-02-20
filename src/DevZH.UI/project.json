@@ -20,7 +20,7 @@
     ]
   },
   "dependencies": {
-    "DevZH.LibUI": "1.0.0-*",
+    "NETStandard.Library": "1.6.1",    "DevZH.LibUI": "1.0.0-*",
     "NETStandard.Library": "1.6.1",
     "System.ComponentModel": "4.3.0",
     "System.Drawing.Primitives": "4.3.0",

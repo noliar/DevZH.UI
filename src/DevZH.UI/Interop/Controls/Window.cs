@@ -14,18 +14,6 @@ namespace DevZH.UI.Interop
         [DllImport(LibUI, CallingConvention = CallingConvention.Cdecl, EntryPoint = "uiWindowSetTitle")]
         public static extern void WindowSetTitle(IntPtr window, byte[] title);
 
-        [DllImport(LibUI, CallingConvention = CallingConvention.Cdecl, EntryPoint = "uiWindowPosition")]
-        public static extern void WindowPosition(IntPtr window, out int x, out int y);
-
-        [DllImport(LibUI, CallingConvention = CallingConvention.Cdecl, EntryPoint = "uiWindowSetPosition")]
-        public static extern void WindowSetPosition(IntPtr window, int x, int y);
-
-        [DllImport(LibUI, CallingConvention = CallingConvention.Cdecl, EntryPoint = "uiWindowCenter")]
-        public static extern void WindowCenter(IntPtr window);
-
-        [DllImport(LibUI, CallingConvention = CallingConvention.Cdecl, EntryPoint = "uiWindowOnPositionChanged")]
-        public static extern void WindowOnPositionChanged(IntPtr window, WindowOnPositionChangedDelegate onPositionChanged, IntPtr data);
-
         [DllImport(LibUI, CallingConvention = CallingConvention.Cdecl, EntryPoint = "uiWindowContentSize")]
         public static extern void WindowContentSize(IntPtr window, out int width, out int height);
 
