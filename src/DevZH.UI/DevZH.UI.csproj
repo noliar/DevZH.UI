@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Description>.NET Core bindings for libui</Description>
+    <Authors>杜晓宇</Authors>
+    <TargetFramework>netstandard1.3</TargetFramework>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <AssemblyName>DevZH.UI</AssemblyName>
+    <PackageId>DevZH.UI</PackageId>
+    <PackageTags>libui;netcore</PackageTags>
+    <PackageProjectUrl>https://github.com/noliar/DevZH.UI</PackageProjectUrl>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/noliar/DevZH.UI/master/LICENSE-2.0.txt</PackageLicenseUrl>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>git://github.com/noliar/DevZH.UI</RepositoryUrl>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DevZH.LibUI" Version="1.0.0-*" />
+    <PackageReference Include="System.ComponentModel" Version="4.3.0" />
+    <PackageReference Include="System.Drawing.Primitives" Version="4.3.0" />
+    <PackageReference Include="System.Text.Encoding.CodePages" Version="4.3.0" />
+  </ItemGroup>
+
+</Project>

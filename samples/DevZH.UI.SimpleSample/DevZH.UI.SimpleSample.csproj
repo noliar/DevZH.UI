@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp1.0</TargetFramework>
+    <AssemblyName>DevZH.UI.SimpleSample</AssemblyName>
+    <OutputType>Exe</OutputType>
+    <PackageId>DevZH.UI.SimpleSample</PackageId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\DevZH.UI\DevZH.UI.csproj" />
+  </ItemGroup>
+
+</Project>

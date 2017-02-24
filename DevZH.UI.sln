@@ -1,25 +1,24 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26114.2
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{486E539D-A696-49D4-82BE-4F37C6E044F0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A0FA3D2F-D475-461E-A38F-95E6C0B6ABE8}"
 	ProjectSection(SolutionItems) = preProject
-		global.json = global.json
 		NuGet.config = NuGet.config
 	EndProjectSection
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "DevZH.UI", "src\DevZH.UI\DevZH.UI.xproj", "{1289BF5B-29E3-40B9-9302-36F2D45604CF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevZH.UI", "src\DevZH.UI\DevZH.UI.csproj", "{1289BF5B-29E3-40B9-9302-36F2D45604CF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{FFA931E5-2605-4BC8-B76E-EA42AA0EAB25}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "DevZH.UI.SimpleSample", "samples\DevZH.UI.SimpleSample\DevZH.UI.SimpleSample.xproj", "{09CD0FD0-0216-4574-91AD-94675C58828D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevZH.UI.SimpleSample", "samples\DevZH.UI.SimpleSample\DevZH.UI.SimpleSample.csproj", "{09CD0FD0-0216-4574-91AD-94675C58828D}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Histogram", "samples\Histogram\Histogram.xproj", "{A5F99126-0ABF-4F73-9B6D-DDF4BF196E29}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Histogram", "samples\Histogram\Histogram.csproj", "{A5F99126-0ABF-4F73-9B6D-DDF4BF196E29}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Tester", "samples\Tester\Tester.xproj", "{B1CE8A73-60A2-4CCB-9C2D-DAF617AC0875}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tester", "samples\Tester\Tester.csproj", "{B1CE8A73-60A2-4CCB-9C2D-DAF617AC0875}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
