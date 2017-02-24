@@ -122,7 +122,7 @@ namespace DevZH.UI
             GC.SuppressFinalize(this);
         }
 
-        public void Dispose(bool disposing)
+        protected virtual void Dispose(bool disposing)
         {
             if (handle != IntPtr.Zero)
             {
