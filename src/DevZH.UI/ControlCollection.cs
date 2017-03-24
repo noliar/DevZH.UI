@@ -137,7 +137,12 @@ namespace DevZH.UI
             }
             item.Index = -1;
             item.Parent = null;
-            return InnerList.Remove(item);
+            var success = InnerList.Remove(item);
+            if (success)
+            {
+                item.Dispose(true);
+            }
+            return success;
         }
 
         public int Count => InnerList.Count;

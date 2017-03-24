@@ -7,7 +7,7 @@ using DevZH.UI.Interop;
 
 namespace DevZH.UI
 {
-    public class Grid : ContainerControl, IContainerControl<GridItemCollection, Grid>
+    public class Grid : ContainerControl<GridItemCollection, Grid>
     {
         public Grid()
         {
@@ -29,20 +29,6 @@ namespace DevZH.UI
                     NativeMethods.GridSetPadded(handle, value);
                     _allowPadding = value;
                 }
-            }
-        }
-
-        private GridItemCollection _children;
-
-        public GridItemCollection Children
-        {
-            get
-            {
-                if (_children == null)
-                {
-                    _children = new GridItemCollection(this);
-                }
-                return _children;
             }
         }
     }

@@ -7,7 +7,7 @@ using DevZH.UI.Interop;
 
 namespace DevZH.UI
 {
-    public abstract class BoxContainer : ContainerControl, IContainerControl<BoxItemCollection, BoxContainer>
+    public abstract class BoxContainer : ContainerControl<BoxItemCollection, BoxContainer>
     {
 
         private Orientation _orientation = Orientation.Vertical;
@@ -33,19 +33,6 @@ namespace DevZH.UI
             get { return NativeMethods.BoxPadded(this.handle); }
             set { NativeMethods.BoxSetPadded(handle, value);}
         }
-
-        private BoxItemCollection _children;
-        public BoxItemCollection Children
-        {
-            get
-            {
-                if (_children == null)
-                {
-                    _children = new BoxItemCollection(this);
-                }
-                return _children;
-            }
-        }
     }
 
     public class VerticalBox : BoxContainer
@@ -70,7 +57,7 @@ namespace DevZH.UI
     {
         public BoxItemCollection(BoxContainer uiParent) : base(uiParent)
         {
-
+            //
         }
 
         public override bool Remove(Control item)

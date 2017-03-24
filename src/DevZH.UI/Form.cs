@@ -8,7 +8,7 @@ using DevZH.UI.Utils;
 
 namespace DevZH.UI
 {
-    public class Form : ContainerControl, IContainerControl<FormItemCollection, Form>
+    public class Form : ContainerControl<FormItemCollection, Form>
     {
         public Form()
         {
@@ -30,17 +30,6 @@ namespace DevZH.UI
                     NativeMethods.FormSetPadded(handle, value);
                     _allowPadding = value;
                 }
-            }
-        }
-
-        private FormItemCollection _child;
-
-        public FormItemCollection Children
-        {
-            get
-            {
-                if(_child == null) _child = new FormItemCollection(this);
-                return _child;
             }
         }
     }
