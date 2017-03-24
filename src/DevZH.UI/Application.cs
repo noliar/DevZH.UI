@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using DevZH.UI.Events;
 using DevZH.UI.Interface;
 using DevZH.UI.Interop;
+using DevZH.UI.Utils;
 
 namespace DevZH.UI
 {
@@ -83,11 +84,12 @@ namespace DevZH.UI
         private void Init(bool hiddenConsole = true)
         {
             HideConsole = hiddenConsole;
-            var str = NativeMethods.Init(ref Options);
+            var strPtr = NativeMethods.Init(ref Options);
+            var str = StringUtil.GetString(strPtr);
             if (!string.IsNullOrEmpty(str))
             {
                 Console.WriteLine(str);
-                NativeMethods.FreeInitError(str);
+                NativeMethods.FreeInitError(strPtr);
                 throw new Win32Exception(str);
             }
             InitializeEvents();

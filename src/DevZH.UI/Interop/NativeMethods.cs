@@ -12,14 +12,14 @@ namespace DevZH.UI.Interop
         private const string LibUI = "libui";
 
         [DllImport(LibUI, CallingConvention = CallingConvention.Cdecl, EntryPoint = "uiInit")]
-        public static extern string Init(ref InitOptions options);
+        public static extern IntPtr Init(ref InitOptions options);
 
         [DllImport(LibUI, CallingConvention = CallingConvention.Cdecl, EntryPoint = "uiUninit")]
         public static extern void UnInit();
 
         // It can use string directly, 'cause these are printed as ansi by libui
         [DllImport(LibUI, CallingConvention = CallingConvention.Cdecl, EntryPoint = "uiFreeInitError")]
-        public static extern void FreeInitError(string error);
+        public static extern void FreeInitError(IntPtr error);
 
         [DllImport(LibUI, CallingConvention = CallingConvention.Cdecl, EntryPoint = "uiMain")]
         public static extern void Main();
