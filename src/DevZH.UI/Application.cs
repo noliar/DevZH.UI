@@ -118,12 +118,27 @@ namespace DevZH.UI
             return 0;
         }
 
-        public void QueueMain(Action action)
+        //private static readonly Queue<Action> QueueActions = new Queue<Action>();
+        public static void QueueMain(Action action)
         {
-            NativeMethods.QueueMain(data =>
+            lock (_lock)
             {
-                action?.Invoke();
-            }, IntPtr.Zero);
+                /*QueueActions.Enqueue(action);
+                NativeMethods.QueueMain(data =>
+                {
+                    lock (_lock)
+                    {
+                        var a2 = QueueActions.Dequeue();
+                        a2?.Invoke();
+                    }
+                }, new IntPtr(QueueActions.Count));*/
+                
+                NativeMethods.QueueMain(data =>
+                {
+                    action?.Invoke();
+                }, IntPtr.Zero);
+            }
+            
         }
 
         private void Steps()
