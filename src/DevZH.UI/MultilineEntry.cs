@@ -12,7 +12,7 @@ namespace DevZH.UI
         public bool IsWrapping { get; }
 
         private string _text;
-        public override string Text
+        public virtual string Text
         {
             get
             {

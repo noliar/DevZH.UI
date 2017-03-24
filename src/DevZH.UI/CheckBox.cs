@@ -35,7 +35,7 @@ namespace DevZH.UI
             set { NativeMethods.CheckBoxSetChecked(handle, value);}
         }
 
-        protected void InitializeEvents()
+        protected sealed override void InitializeEvents()
         {
             NativeMethods.CheckBoxOnToggled(handle, (checkbox, data) =>
             {

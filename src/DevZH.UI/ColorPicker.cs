@@ -37,7 +37,7 @@ namespace DevZH.UI
             }
         }
 
-        public void InitializeEvents()
+        protected  sealed override void InitializeEvents()
         {
             NativeMethods.ColorButtonOnChanged(handle, (button, data) =>
             {

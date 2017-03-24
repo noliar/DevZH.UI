@@ -42,9 +42,8 @@ namespace DevZH.UI
             var item = new MenuItem(handler, type);
             if (click != null)
             {
-                item.Click += (sender, e) =>
+                item.Click += (sender, args) =>
                 {
-                    var args = e as DataEventArgs;
                     if (args != null)
                     {
                         click(args.Data);
@@ -75,9 +74,8 @@ namespace DevZH.UI
             var item = new MenuItem(handler, type);
             if (click != null)
             {
-                item.Click += (sender, e) =>
+                item.Click += (sender, args) =>
                 {
-                    var args = e as DataEventArgs;
                     if (args != null)
                     {
                         click(args.Data);

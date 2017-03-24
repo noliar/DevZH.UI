@@ -32,12 +32,23 @@ namespace DevZH.UI
             get { return _child; }
             set
             {
-                if (_child != value && value.Verify())
+                if (_child != value)
                 {
-                    NativeMethods.GroupSetChild(handle, value.handle);
+                    NativeMethods.GroupSetChild(handle, value?.handle ?? IntPtr.Zero);
                     _child = value;
                 }
             }
+        }
+
+        protected override void Destroy()
+        {
+            if (Child != null)
+            {
+                var child = Child;
+                Child = null;
+                child.Dispose(true);
+            }
+            base.Destroy();
         }
     }
 }

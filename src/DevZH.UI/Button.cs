@@ -12,6 +12,8 @@ namespace DevZH.UI
 {
     public class Button : ButtonBase
     {
+        public event EventHandler Click;
+
         public override string Text
         {
             get { return StringUtil.GetString(NativeMethods.ButtonText(handle)); }
@@ -30,12 +32,17 @@ namespace DevZH.UI
             InitializeEvents();
         }
 
-        protected void InitializeEvents()
+        protected sealed override void InitializeEvents()
         {
             NativeMethods.ButtonOnClicked(handle, (button, data) =>
             {
                 OnClick(EventArgs.Empty);
             }, IntPtr.Zero);
+        }
+
+        protected virtual void OnClick(EventArgs e)
+        {
+            Click?.Invoke(this, e);
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DevZH.UI.Events;
 using DevZH.UI.Interop;
 using DevZH.UI.Utils;
 
@@ -11,7 +12,7 @@ namespace DevZH.UI
     {
         private string _text;
 
-        public override string Text
+        public virtual string Text
         {
             get
             {
@@ -49,12 +50,19 @@ namespace DevZH.UI
             }
         }
 
-        protected void InitializeEvents()
+        protected sealed override void InitializeEvents()
         {
             NativeMethods.EditableComboBoxOnChanged(handle, (box, data) =>
             {
                 OnTextChanged(EventArgs.Empty);
             }, IntPtr.Zero);
+        }
+
+        public event EventHandler<TextChangedEventArgs> TextChanged;
+        protected virtual void OnTextChanged(EventArgs e)
+        {
+            var text = this.Text;
+            TextChanged?.Invoke(this, new TextChangedEventArgs { Text = text });
         }
     }
 }

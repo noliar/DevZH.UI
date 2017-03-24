@@ -8,25 +8,46 @@ namespace DevZH.UI
 {
     public class DateTimePicker : Control
     {
-        public DateTimePicker()
+        public enum Types : byte
         {
-            handle = NativeMethods.NewDateTimePicker();
+            DateTimePicker,
+            DatePicker,
+            TimePicker,
+        }
+
+        public DateTimePicker() : this(Types.DateTimePicker)
+        {
+        }
+
+        protected DateTimePicker(Types types = Types.DateTimePicker)
+        {
+            switch (types)
+            {
+                case Types.DateTimePicker:
+                    handle = NativeMethods.NewDateTimePicker();
+                    break;
+                case Types.DatePicker:
+                    handle = NativeMethods.NewDatePicker();
+                    break;
+                case Types.TimePicker:
+                    handle = NativeMethods.NewTimePicker();
+                    break;
+            }
+            
         }
     }
 
-    public class DatePicker : Control
+    public class DatePicker : DateTimePicker
     {
-        public DatePicker()
+        public DatePicker() : base(Types.DatePicker)
         {
-            handle = NativeMethods.NewDatePicker();
         }
     }
 
-    public class TimePicker : Control
+    public class TimePicker : DateTimePicker
     {
-        public TimePicker()
+        public TimePicker() : base(Types.DateTimePicker)
         {
-            handle = NativeMethods.NewTimePicker();
         }
     }
 }

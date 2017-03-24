@@ -10,6 +10,8 @@ namespace DevZH.UI
 {
     public class MenuItem : Control
     {
+        public event EventHandler<DataEventArgs> Click;
+
         internal MenuItem(IntPtr handle, MenuItemTypes type)
         {
             this.handle = handle;
@@ -59,7 +61,7 @@ namespace DevZH.UI
             }
         }
 
-        public void InitializeEvents()
+        protected sealed override void InitializeEvents()
         {
             switch (Type)
             {
@@ -72,6 +74,11 @@ namespace DevZH.UI
                     }, IntPtr.Zero);
                     break;
             }
+        }
+
+        protected virtual void OnClick(DataEventArgs e)
+        {
+            Click?.Invoke(this, e);
         }
     }
 }

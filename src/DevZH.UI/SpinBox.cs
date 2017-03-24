@@ -40,7 +40,7 @@ namespace DevZH.UI
             ValueChanged?.Invoke(this, e);
         }
 
-        protected void InitializeEvents()
+        protected sealed override void InitializeEvents()
         {
             NativeMethods.SpinBoxOnChanged(handle, (box, data) =>
             {

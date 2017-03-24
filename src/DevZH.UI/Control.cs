@@ -14,26 +14,32 @@ namespace DevZH.UI
     /// </summary>
     public abstract class Control : IDisposable
     {
+        private IntPtr _handle;
         /// <summary>
         /// It stored a pointer to a control instance.
         /// </summary>
-        protected internal IntPtr handle { get; protected set; }
+        protected internal IntPtr handle
+        {
+            get
+            {
+                return _handle;
+            }
+            protected set
+            {
+                _handle = value;
+                ControlCaches[value] = this;
+            }
+        }
 
         public event EventHandler LocationChanged;
 
         public event EventHandler Resize;
-
-        public event EventHandler Click;
-
-        public event EventHandler<TextChangedEventArgs> TextChanged;
 
         internal static Dictionary<IntPtr, Control> ControlCaches = new Dictionary<IntPtr, Control>();
 
         public Control Parent { get; internal set; }
 
         public int Index { get; protected internal set; }
-
-        public virtual string Text { get; set; }
 
         protected Control()
         {
@@ -143,6 +149,7 @@ namespace DevZH.UI
         protected virtual void Destroy()
         {
             // TODO maybe store some info
+            ControlCaches.Remove(handle);
             NativeMethods.ControlDestroy(handle);
         }
 
@@ -164,17 +171,6 @@ namespace DevZH.UI
         protected virtual void OnLocationChanged(EventArgs e)
         {
             LocationChanged?.Invoke(this, e);
-        }
-
-        protected virtual void OnClick(EventArgs e)
-        {
-            Click?.Invoke(this, e);
-        }
-
-        protected virtual void OnTextChanged(EventArgs e)
-        {
-            var text = this.Text;
-            TextChanged?.Invoke(this, new TextChangedEventArgs {Text = text});
         }
 
         protected internal virtual void DelayRender()

@@ -55,7 +55,7 @@ namespace DevZH.UI
             Selected?.Invoke(this, e);
         }
 
-        protected void InitializeEvents()
+        protected sealed override void InitializeEvents()
         {
             NativeMethods.RadioButtonOnSelected(handle, (btn, data) =>
             {

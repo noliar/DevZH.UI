@@ -11,23 +11,24 @@ namespace DevZH.UI
     {
         public Label(string text)
         {
-            base.Text = text;
+            _text = text;
             handle = NativeMethods.NewLabel(StringUtil.GetBytes(text));
         }
 
-        public override string Text
+        private string _text;
+        public string Text
         {
             get
             {
-                base.Text = StringUtil.GetString(NativeMethods.LabelText(handle));
-                return base.Text;
+                _text = StringUtil.GetString(NativeMethods.LabelText(handle));
+                return _text;
             }
             set
             {
-                if (base.Text != value)
+                if (_text != value)
                 {
                     NativeMethods.LabelSetText(handle, StringUtil.GetBytes(value));
-                    base.Text = value;
+                    _text = value;
                 }
             }
         }

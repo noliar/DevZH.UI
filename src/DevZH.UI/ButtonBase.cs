@@ -7,7 +7,7 @@ namespace DevZH.UI
 {
     public abstract class ButtonBase : Control
     {
-        public abstract override string Text { get; set; }
+        public abstract string Text { get; set; }
 
         protected ButtonBase(string text)
         {

@@ -8,28 +8,29 @@ namespace DevZH.UI
 {
     public class Entry : EntryBase
     {
-        public Entry()
+        public enum Types : byte
         {
-            handle = NativeMethods.NewEntry();
-            InitializeEvents();
+            Basic,
+            Password,
+            Search
+        }
+
+        public Entry() : base(Types.Basic)
+        {
         }
     }
 
     public class PasswordEntry : EntryBase
     {
-        public PasswordEntry()
+        public PasswordEntry() : base(Entry.Types.Password)
         {
-            handle = NativeMethods.NewPasswordEntry();
-            InitializeEvents();
         }
     }
 
     public class SearchEntry : EntryBase
     {
-        public SearchEntry()
+        public SearchEntry() : base(Entry.Types.Search)
         {
-            handle = NativeMethods.NewSearchEntry();
-            InitializeEvents();
         }
     }
 }

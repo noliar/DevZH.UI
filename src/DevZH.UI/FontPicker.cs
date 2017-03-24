@@ -33,7 +33,7 @@ namespace DevZH.UI
         }
 
 
-        protected void InitializeEvents()
+        protected sealed override void InitializeEvents()
         {
             NativeMethods.FontButtonOnChanged(handle, (button, data) =>
             {
