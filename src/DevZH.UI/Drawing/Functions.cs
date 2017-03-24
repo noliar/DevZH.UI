@@ -21,7 +21,7 @@ namespace DevZH.UI.Drawing
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         // TODO document that on first show if the mouse is already in the uiArea then one gets sent with left=0
         // TODO what about when the area is hidden and then shown again?
-        internal delegate void AreaHandlerMouseCrossed(IntPtr handler, IntPtr area, int left);
+        internal delegate void AreaHandlerMouseCrossed(IntPtr handler, IntPtr area, bool left);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void AreaHandlerDragBroken(IntPtr handler, IntPtr area);

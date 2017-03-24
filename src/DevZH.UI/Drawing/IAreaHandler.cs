@@ -12,7 +12,7 @@ namespace DevZH.UI.Drawing
 
         void MouseEvent(AreaBase area, ref AreaMouseEvent mouseEvent);
 
-        void MouseCrossed(AreaBase area, int left);
+        void MouseCrossed(AreaBase area, bool left);
 
         void DragBroken(AreaBase area);
 
