@@ -17,7 +17,7 @@ namespace Histogram
 
         private ColorPicker _colorPicker;
 
-        public MainWindow(string title, int width = 500, int height = 200, bool hasMemubar = false) : base(title, width, height, hasMemubar)
+        public MainWindow(string title, int width = 500, int height = 200, bool hasMenubar = false) : base(title, width, height, hasMenubar)
         {
             InitializeComponent();
         }

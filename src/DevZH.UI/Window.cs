@@ -114,10 +114,10 @@ namespace DevZH.UI
             set { NativeMethods.WindowSetBorderless(handle, value); }
         }
 
-        public Window(string title, int width = 500, int height = 200, bool hasMemubar = false)
+        public Window(string title, int width = 500, int height = 200, bool hasMenubar = false)
         {
             if (!ValidTitle(title)) title = "DevZH.UI";
-            this.handle = NativeMethods.NewWindow(StringUtil.GetBytes(title), width, height, hasMemubar);
+            this.handle = NativeMethods.NewWindow(StringUtil.GetBytes(title), width, height, hasMenubar);
             Windows.Add(this.handle, this);
             this.InitializeEvents();
             this.InitializeData();
