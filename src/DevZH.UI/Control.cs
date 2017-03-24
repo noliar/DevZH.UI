@@ -47,6 +47,16 @@ namespace DevZH.UI
             }
         }
 
+        protected virtual void InitializeEvents()
+        {
+            
+        }
+
+        protected virtual void InitializeData()
+        {
+            
+        }
+
         protected internal bool Verify()
         {
             return this.handle != IntPtr.Zero;

@@ -13,35 +13,46 @@ namespace DevZH.UI
 {
     public class Window : Control
     {
-        private string _title = "DevZH.UI";
-
         private static readonly Dictionary<IntPtr, Window> Windows = new Dictionary<IntPtr, Window>();
 
         public EventHandler<CancelEventArgs> Closing;
 
+        private Control _child;  
         public Control Child
         {
             set
             {
-                if (value != null && value.Verify())
+                _child = value;
+                if (value == null)
+                {
+                    NativeMethods.WindowSetChild(handle, IntPtr.Zero);
+                    return;
+                }
+                if (value.Verify())
                 {
                     NativeMethods.WindowSetChild(handle, value.handle);
                 }
             }
-        }
-
-        public string Title
-        {
             get
             {
-                return _title;
+                return _child;
+            }
+        }
+
+        // private string _title;
+        public string Title
+        {
+            // Which is faster, P/Invoke or variable;
+            get
+            {
+                var str = NativeMethods.WindowTitle(handle);
+                return StringUtil.GetString(str);
             }
             set
             {
                 var title = value;
-                if (!ValidTitle(title)) title = _title;
+                if (!ValidTitle(title)) title = "DevZH.UI";
                 NativeMethods.WindowSetTitle(handle, StringUtil.GetBytes(title));
-                _title = title;
             }
         }
 
@@ -105,15 +116,14 @@ namespace DevZH.UI
 
         public Window(string title, int width = 500, int height = 200, bool hasMemubar = false)
         {
-            if (!ValidTitle(title)) title = _title;
+            if (!ValidTitle(title)) title = "DevZH.UI";
             this.handle = NativeMethods.NewWindow(StringUtil.GetBytes(title), width, height, hasMemubar);
-            _title = title;
             Windows.Add(this.handle, this);
             this.InitializeEvents();
             this.InitializeData();
         }
 
-        protected void InitializeEvents()
+        protected sealed override void InitializeEvents()
         {
             if (!this.Verify())
             {
@@ -130,8 +140,7 @@ namespace DevZH.UI
                 {
                     if (Windows.Count > 1 && this != Application.MainWindow)
                     {
-                        var intptr = this.handle;
-                        Windows.Remove(intptr);
+                        this.Close();
                     }
                     else
                     {
@@ -152,7 +161,7 @@ namespace DevZH.UI
             }, IntPtr.Zero);
         }
 
-        private void InitializeData()
+        protected sealed override void InitializeData()
         {
         }
 
@@ -161,6 +170,7 @@ namespace DevZH.UI
             Closing?.Invoke(this, e);
         }
 
+        // Is it necessary?
         protected bool ValidTitle(string title) => !string.IsNullOrEmpty(title);
 
         /* No effect by now
@@ -182,6 +192,12 @@ namespace DevZH.UI
 
         public void Close()
         {
+            Hide();
+            if (Child != null)
+            {
+                Child.Dispose(true);
+                Child = null;
+            }
             var intptr = this.handle;
             base.Destroy();
             Windows.Remove(intptr);
