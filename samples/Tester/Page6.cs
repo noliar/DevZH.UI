@@ -30,7 +30,7 @@ namespace Tester
                 Console.WriteLine($"mouse ({mouseEvent.X},{mouseEvent.Y}):({mouseEvent.AreaWidth},{mouseEvent.AreaHeight}) down:{mouseEvent.Down} up:{mouseEvent.Up} count:{mouseEvent.Count} mods:{mouseEvent.Modifiers} held:0x{mouseEvent.Held1To64:X}");
             }
 
-            public void MouseCrossed(AreaBase area, int left)
+            public void MouseCrossed(AreaBase area, bool left)
             {
                 Console.WriteLine($"mouse crossed {left}");
             }
