@@ -168,7 +168,7 @@ namespace Histogram
             area.QueueReDrawAll();
         }
 
-        public void MouseCrossed(AreaBase area, int left)
+        public void MouseCrossed(AreaBase area, bool left)
         {
             //throw new NotImplementedException();
         }
